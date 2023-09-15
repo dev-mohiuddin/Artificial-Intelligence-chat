@@ -4,10 +4,10 @@ import Header from './Header'
 
 function Frontend() {
   return (
-    <div className="bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-pink-400 to-blue-600"> 
+    <div className="main-bg"> 
       <div className="glass">
         <Header />
-          <div className="container flex pt-12 gap-10 glass">
+          <div className="container h-screen flex flex-col-reverse md:flex-row justify-between pt-12 gap-10">
             <Sidebar />
               <div className="flex-1 py-4"><Outlet /></div>
             </div>
