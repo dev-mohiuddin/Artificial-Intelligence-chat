@@ -6,7 +6,7 @@ import { Link  } from 'react-router-dom'
 
 function Header() {
   return (
-    <div className='w-full glass md:bg-transparent dark:md:bg-none fixed z-50'>
+    <div className='w-full glass bg-slate-100 md:bg-transparent dark:md:bg-none fixed z-50'>
       <div className="container h-12 md:border md:border-x-0 md:border-t-0 border-b-gray-400 dark:border-b-gray-600 flex items-center justify-between">
           <div className='w-48'>
             <Link to="/">
@@ -25,12 +25,12 @@ function Header() {
               <div className='flex items-center'>
                 <span className='cursor-pointer hcol'><BsMoonStars size={17}/></span>
               </div>
-              <div className='bg-yellow-100 px-2 py-1 flex items-center cursor-pointer rounded-md'>
-                <span className='flex items-center hcol dark:text-black gap-1'>Upgrade <TbSettingsDollar size={15}/></span>
+              <div className='bg-yellow-100 hover:bg-yellow-200 duration-200 px-2 py-1 flex items-center cursor-pointer rounded-md'>
+                <span className='flex items-center hcol dark:text-black gap-1'>Premium<TbSettingsDollar size={15}/></span>
               </div>
               <div className="flex gap-5 items-center">
                 <Link to="/login">
-                  <span className='bg-blue-500 hcol px-2 py-1 rounded-md cursor-pointer text-white'>Log in</span>
+                  <span className='bg-blue-500 hover:bg-blue-900 duration-200 hcol px-2 py-1 rounded-md cursor-pointer text-white'>Log in</span>
                 </Link>
               </div>
             </div>
