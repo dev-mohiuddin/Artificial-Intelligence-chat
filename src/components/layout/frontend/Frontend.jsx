@@ -7,9 +7,9 @@ function Frontend() {
     <div className="main-bg "> 
       <div className="glass">
         <Header />
-          <div className="md:pl-8 pt-5 md:pt-12 md:h-screen flex flex-col-reverse md:flex-row justify-between">
+          <div className="pt-5 md:pt-12 md:h-screen flex flex-col-reverse md:flex-row justify-between">
             <Sidebar />
-              <div className="md:flex-1 mt-[29px] md:mt-0 z-50 h-[calc(100vh-104px)] md:h-full"><Outlet /></div>
+              <div className="mt-[29px] mb-[56px] md:mt-0 z-50 h-[calc(100vh-104px)] w-full md:h-full overflow-hidden"><Outlet /></div>
             </div>
         </div>
     </div>

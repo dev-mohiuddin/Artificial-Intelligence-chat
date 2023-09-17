@@ -29,7 +29,7 @@ function Character() {
                     ))
                 }
             </div>
-            <div className='hidden md:flex justify-center items-center gap-5 overflow-x-auto scroll-hide'>
+            <div className='hidden md:flex justify-start items-center gap-5 overflow-x-auto scroll-hide'>
                 {
                     character?.map((persion, val) => (
                         <SingleCharacter key={val} persion={persion} />
