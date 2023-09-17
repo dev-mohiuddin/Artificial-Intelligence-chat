@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function Sidebar() {
   return (
     <div className='fixed md:bg-none md:pl-6 min-w-full md:min-w-0 md:static bottom-0 h-14 md:h-[calc(100vh-56px)] z-50 md:py-4 border border-x-0 border-b-0 dark:border-t-gray-600 border-t-gray-400 md:border-0'>
-        <div className='bg-slate-100 dark:bg-slate-900 md:bg-transparent md:dark:bg-none  min-h-full md:min-h-0 md:pb-0 flex mx-auto  items-center justify-center  md:flex-col gap-10 md:gap-5'>
+        <div className='bg-slate-100 dark:bg-slate-900 md:bg-transparent md:dark:bg-transparent  min-h-full md:min-h-0 md:pb-0 flex mx-auto  items-center justify-center  md:flex-col gap-10 md:gap-5'>
           <Link to="/">
             <div className='flex flex-col items-center hover:cursor-pointer group'>
               <span className='text-2xl group-hover:text-blue-600 hcol'><AiOutlineHome /></span>
