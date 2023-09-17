@@ -6,7 +6,7 @@ import { categroy } from "../../assets/lib/data"
 function Category() {
   return (
     <div>
-        <div className='flex items-center gap-4 overflow-x-auto mt-6 md:mt-0'>
+        <div className='flex items-center py-2 gap-4 overflow-x-auto'>
             {
                 categroy?.map((item)=>(
                     <div className="bg-slate-100 shadow-sm dark:bg-gray-800 px-3 py-1 rounded-md cursor-pointer capitalize" key={item.key}>

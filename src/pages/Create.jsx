@@ -5,8 +5,8 @@ function Create() {
 
 
   return (
-    <div className='w-full  mt-6 md:mt-0'>
-      <div className='flex flex-col md:gap-8 px-0 md:px-3 gap-5'>
+    <div className='w-full py-2 h-full overflow-y-auto '>
+      <div className='container flex flex-col md:gap-8 gap-5'>
         <div className='space-y-2 md:space-y-4'>
           <div className='flex items-center gap-2'>
             <span className='hcol text-xl'><GiOctoman /></span>

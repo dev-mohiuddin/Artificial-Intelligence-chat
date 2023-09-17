@@ -19,14 +19,18 @@ function Sidebar() {
               <span className='group-hover:text-blue-600 text-sm hcol'>Create</span>
             </div>
           </Link>
-          <div className='flex flex-col items-center hover:cursor-pointer group'>
-            <span className='text-[28px] group-hover:text-blue-600 hcol'>< PiUsersThreeThin/></span>
-            <span className='group-hover:text-blue-600 text-sm hcol'>Community</span>
-          </div>
-          <div className='flex flex-col items-center hover:cursor-pointer group'>
-            <span className='text-2xl group-hover:text-blue-600 hcol'>< AiOutlineSetting/></span>
-            <span className='group-hover:text-blue-600 text-sm hcol'>Settings</span>
-          </div>
+          <Link to='/community'>
+            <div className='flex flex-col items-center hover:cursor-pointer group'>
+              <span className='text-[28px] group-hover:text-blue-600 hcol'>< PiUsersThreeThin/></span>
+              <span className='group-hover:text-blue-600 text-sm hcol'>Community</span>
+            </div>
+          </Link>
+          <Link to='/settings'>
+            <div className='flex flex-col items-center hover:cursor-pointer group'>
+              <span className='text-2xl group-hover:text-blue-600 hcol'>< AiOutlineSetting/></span>
+              <span className='group-hover:text-blue-600 text-sm hcol'>Settings</span>
+            </div>
+          </Link>
         </div>
     </div>
   )

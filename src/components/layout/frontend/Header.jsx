@@ -7,7 +7,7 @@ import { Link  } from 'react-router-dom'
 function Header() {
   return (
     <div className='w-full glass md:bg-transparent dark:md:bg-none fixed z-50'>
-      <div className="container h-12 border border-x-0 border-t-0 border-b-gray-400 dark:border-b-gray-600 flex items-center justify-between">
+      <div className="container h-12 md:border md:border-x-0 md:border-t-0 border-b-gray-400 dark:border-b-gray-600 flex items-center justify-between">
           <div className='w-48'>
             <Link to="/">
               <h1 className='text-xl hcol inline-block cursor-pointer md:text-2xl md:font-bold '>Ai-assistant</h1>
