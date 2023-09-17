@@ -1,17 +1,32 @@
 
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 import ChatHeader from '../components/chat/ChatHeader'
 import ChatContainer from '../components/chat/ChatContainer'
 import ChatFooter from '../components/chat/ChatFooter'
 
+import {character} from '../assets/lib/data'
+
 
 function Chat() {
+
+  const {id} = useParams();
+  const [aiChat, setAiChat] = useState([]);
+  
+  useEffect(()=>{
+    const data = character.find((ai)=> ai.id == id)
+    setAiChat(data)
+  }, [id])
+
+  console.log(aiChat)
+
   return (
     <div className='w-full main-bg'>
         <div className='glass h-screen '>
-            <div className='container max-w-3xl h-screen flex flex-col justify-between'>
-                <ChatHeader />
-                <ChatContainer />
+            <div className='container px-0 relative max-w-3xl h-screen flex flex-col justify-between'>
+                <ChatHeader aiChat={aiChat} />
+                <ChatContainer aiChat={aiChat} />
                 <ChatFooter />
             </div>
         </div>
