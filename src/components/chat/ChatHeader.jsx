@@ -8,8 +8,8 @@ function ChatHeader({ aiChat }) {
   const navigate = useNavigate();
 
   return (
-    <div className='fixed w-full top-0 flex'>
-      <div className='w-[768px] bg-gradient-to-r from-transparent via-transparent to-transparent px-2 md:px-3 h-14 md:h-16 flex justify-between items-cente border border-x-0 border-t-0 border-b-gray-400 dark:border-b-gray-600'>
+    <div className='w-full'>
+      <div className='bg-gradient-to-r from-transparent via-transparent to-transparent px-2 md:px-3 h-14 md:h-16 flex justify-between items-cente border border-x-0 border-t-0 border-b-gray-400 dark:border-b-gray-600'>
         <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
         <div className='flex items-center gap-2 '>
           <div className='flex justify-center items-center rounded-full overflow-hidden h-10 w-10 md:w-12 md:h-12 '>

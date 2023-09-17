@@ -3,7 +3,7 @@ import teacher from '../../assets/images/characterimg/teacher.png'
 
 function ChatContainer({aiChat}) {
   return (
-    <div className='h-[calc(100vh-112px)] md:h-[calc(100vh-128px)] bg-red-100 mt-14 md:mt-16 mb-14 md:mb-16 py-3 overflow-y-scroll scroll-hide'>
+    <div className='h-[calc(100vh-112px)] md:h-[calc(100vh-128px)] bg-red-900 py-3 overflow-y-scroll scroll-hide'>
       <div className="w-full px-2 md:px-3 flex flex-col gap-1">
         <div className="flex gap-1 md:gap-2 p-1 rounded-md md:p-2">
           <div className="flex justify-center items-center w-7 h-7 md:w-9 md:h-9 rounded-full overflow-hidden">
