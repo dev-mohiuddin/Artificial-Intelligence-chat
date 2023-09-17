@@ -5,7 +5,7 @@ function Create() {
 
 
   return (
-    <div className='w-full py-2 h-full overflow-y-auto '>
+    <div className='w-full py-2 h-full overflow-y-auto scroll'>
       <div className='container flex flex-col md:gap-8 gap-5'>
         <div className='space-y-2 md:space-y-4'>
           <div className='flex items-center gap-2'>

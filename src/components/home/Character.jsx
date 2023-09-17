@@ -20,7 +20,7 @@ function Character() {
                                         <p className='text-xs italic pcol'>@{persion.creator}</p>
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <p className='pcol text-base font-normal'>{persion.description.substring(0, 35)}...</p>
+                                        <p className='pcol text-base font-normal'>{persion.description.substring(0, 30)}...</p>
                                         <span className='text-right pcol text-xs font-medium'>{persion.follow}</span>
                                     </div>
                                 </div>

@@ -12,7 +12,7 @@ import Chat from './pages/Chat'
 function App() {
 
   return (
-    <div className='dark'>
+    <div className='dar'>
       <Routes>
         <Route path='/' element={<Frontend />}>
           <Route index element={<Home />} />

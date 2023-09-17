@@ -15,8 +15,8 @@ function Header() {
           </div>
           <div className="flex flex-1 justify-end gap-2 md:gap-5">
             <div className='relative flex items-center'>
-              <input className='h-8 outline-none px-3 flex-1 rounded-full md:rounded-md border border-gray-400 dark:border-gray-600 focus:border-blue-300 bg-transparent pcol dark:bg-gray-900' type="text" name="" id="" />
-              <span className='text-xl absolute right-2 hcol cursor-pointer'><FiSearch /></span>
+              <input className='h-8 outline-none px-3 w-48 md:w-72 rounded-full md:rounded-md border bg-slate-100 border-gray-400 dark:border-gray-600 focus:border-blue-300 pcol dark:bg-gray-900' type="text" name="" id="" />
+              <span className='text-xl absolute right-0 bg-slate-100 dark:bg-gray-900 h-full w-9 border border-gray-400 dark:border-gray-600 flex justify-center items-center rounded-r-full md:rounded-r-md overflow-hidden hcol cursor-pointer'><FiSearch /></span>
             </div>
             <div className='flex items-center md:hidden'>
                 <span className='hcol'><BiMenu size={25} /></span>
