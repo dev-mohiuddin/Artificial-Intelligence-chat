@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 
 // client pages
 import Frontend from './components/layout/frontend/Frontend'
@@ -17,10 +18,12 @@ import AllUser from './pages/admin/AllUser'
 
 function App() {
 
+  const [dark, setDark] = useState(false);
+
   return (
-    <div className='dark'>
+    <div className={`${dark ? 'dark' : ''}`}>
       <Routes>
-        <Route path='/' element={<Frontend />}>
+        <Route path='/' element={<Frontend dark={dark} setDark={setDark} />}>
           <Route index element={<Home />} />
           <Route path='/create' element={<Create />} />
           <Route path='/settings' element={<Settings />} />

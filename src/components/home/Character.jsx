@@ -19,8 +19,6 @@ function Character() {
         setCharacter(data)
     }, [option])
 
-    console.log(character)
-
     return (
         <div className="md:pb-4 border-0 md:border border-x-transparent border-t-transparent border-b-gray-400">
            <div className='flex h-10 justify-between items-center'>

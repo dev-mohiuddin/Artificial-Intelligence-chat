@@ -1,10 +1,12 @@
 import {FiSearch} from 'react-icons/fi'
-import {BsMoonStars} from 'react-icons/bs'
+import {BsMoonStars, BsSun} from 'react-icons/bs'
 import {BiMenu} from 'react-icons/bi'
 import {TbSettingsDollar} from 'react-icons/tb'
 import { Link  } from 'react-router-dom'
 
-function Header() {
+function Header({dark, setDark}) {
+  
+
   return (
     <div className='w-full glass bg-slate-100 md:bg-transparent dark:md:bg-none fixed z-50'>
       <div className="container h-12 md:border md:border-x-0 md:border-t-0 border-b-gray-400 dark:border-b-gray-600 flex items-center justify-between">
@@ -23,7 +25,8 @@ function Header() {
             </div>
             <div className='md:flex gap-5 hidden items-center'>
               <div className='flex items-center'>
-                <span className='cursor-pointer hcol'><BsMoonStars size={17}/></span>
+                <span onClick={()=> {setDark(true)}} className={`${dark? 'hidden': ''} cursor-pointer hcol`}><BsMoonStars size={17}/></span>
+                <span onClick={()=> {setDark(false)}} className={`${!dark? 'hidden': ''} cursor-pointer hcol`}><BsSun size={17}/></span>
               </div>
               <div className='bg-yellow-100 hover:bg-yellow-200 duration-200 px-2 py-1 flex items-center cursor-pointer rounded-md'>
                 <span className='flex items-center hcol dark:text-black gap-1'>Premium<TbSettingsDollar size={15}/></span>
