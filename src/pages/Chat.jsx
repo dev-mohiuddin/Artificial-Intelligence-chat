@@ -6,7 +6,7 @@ import ChatHeader from '../components/chat/ChatHeader'
 import ChatContainer from '../components/chat/ChatContainer'
 import ChatFooter from '../components/chat/ChatFooter'
 
-import {character} from '../assets/lib/data'
+import {characterData} from '../assets/lib/data'
 
 
 function Chat() {
@@ -15,11 +15,9 @@ function Chat() {
   const [aiChat, setAiChat] = useState([]);
   
   useEffect(()=>{
-    const data = character.find((ai)=> ai.id == id)
+    const data = characterData.find((ai)=> ai.id == id)
     setAiChat(data)
-  }, [id])
-
-  console.log(aiChat)
+  }, [id])  
 
   return (
     <div className='w-full main-bg'>

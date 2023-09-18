@@ -18,7 +18,7 @@ import AllUser from './pages/admin/AllUser'
 function App() {
 
   return (
-    <div className='dar'>
+    <div className='dark'>
       <Routes>
         <Route path='/' element={<Frontend />}>
           <Route index element={<Home />} />
