@@ -64,7 +64,7 @@ function Create() {
               <input type="file" name="" className='bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
             </div>
           </div>
-          <div className='space-y-2'>
+          <div className='space-y-2 mb-5'>
             <input type="submit" name="" className=' bg-blue-500 text-white font-medium px-4 cursor-pointer h-10 hover:bg-blue-900 duration-200 rounded-md ' value="Create and Chat!" />
           </div>
         </form>
