@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 // client pages
 import Frontend from './components/layout/frontend/Frontend'
-import Admin from './components/layout/admin/Admin'
 import Home from './pages/Home'
 import Create from './pages/Create'
 import Settings from './pages/Settings'
@@ -13,7 +12,9 @@ import SignUp from './pages/SignUp'
 import Chat from './pages/Chat'
 
 // admin pages
+import AdminLayout from './components/layout/admin/AdminLayout'
 import Dashboard from './pages/admin/Dashboard'
+import AdminLogin from './pages/admin/AdminLogin'
 import AllUser from './pages/admin/AllUser'
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
 
   return (
     <div className={`${dark ? 'dark' : ''}`}>
+
+      {/* client route */}
       <Routes>
         <Route path='/' element={<Frontend dark={dark} setDark={setDark} />}>
           <Route index element={<Home />} />
@@ -31,13 +34,14 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/sign-up' element={<SignUp />} />
         </Route>
+        <Route path='/chat/:id' element={<Chat />} />
         
-        <Route path='/admin' element={<Admin />} >
+        {/* admin route */}
+        <Route path='/admin' element={<AdminLayout />} >
           <Route index element={<Dashboard />} />
           <Route path='user' element={<AllUser />} />
         </Route>
-
-        <Route path='/chat/:id' element={<Chat />} />
+        <Route path='/admin-login' element={<AdminLogin />} />
       </Routes>
     </div>
   )

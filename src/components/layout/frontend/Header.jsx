@@ -3,9 +3,13 @@ import {BsMoonStars, BsSun} from 'react-icons/bs'
 import {BiMenu} from 'react-icons/bi'
 import {TbSettingsDollar} from 'react-icons/tb'
 import { Link  } from 'react-router-dom'
+import { useState } from 'react'
+
+import MobileMenu from './MobileMenu'
 
 function Header({dark, setDark}) {
   
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
     <div className='w-full glass bg-slate-100 md:bg-transparent dark:md:bg-none fixed z-50'>
@@ -21,8 +25,11 @@ function Header({dark, setDark}) {
               <span className='text-xl absolute right-0 bg-slate-100 dark:bg-gray-900 h-full w-9 border border-gray-400 dark:border-gray-600 flex justify-center items-center rounded-r-full md:rounded-r-md overflow-hidden hcol cursor-pointer'><FiSearch /></span>
             </div>
             <div className='flex items-center md:hidden'>
-                <span className='hcol'><BiMenu size={25} /></span>
+                <span onClick={()=> setMobileMenu(true)} className='hcol'><BiMenu size={25} /></span>
             </div>
+            {
+              mobileMenu && <MobileMenu setMobileMenu={setMobileMenu} />
+            }
             <div className='md:flex gap-5 hidden items-center'>
               <div className='flex items-center'>
                 <span onClick={()=> {setDark(true)}} className={`${dark? 'hidden': ''} cursor-pointer hcol`}><BsMoonStars size={17}/></span>
@@ -43,4 +50,4 @@ function Header({dark, setDark}) {
   )
 }
 
-export default Header
+export default Header;

@@ -1,4 +1,4 @@
-import {AiOutlineHome, AiOutlineSetting} from 'react-icons/ai'
+import {AiOutlineHome, AiOutlineUser} from 'react-icons/ai'
 import {BiPlus} from 'react-icons/bi'
 import {PiUsersThreeThin} from 'react-icons/pi'
 import { Link } from 'react-router-dom'
@@ -19,16 +19,16 @@ function Sidebar() {
               <span className='group-hover:text-blue-600 text-sm hcol'>Create</span>
             </div>
           </Link>
-          <Link to='/community'>
+          <Link to='/admin-login'>
             <div className='flex flex-col items-center hover:cursor-pointer group'>
               <span className='text-[28px] group-hover:text-blue-600 hcol'>< PiUsersThreeThin/></span>
               <span className='group-hover:text-blue-600 text-sm hcol'>Community</span>
             </div>
           </Link>
-          <Link to='/settings'>
+          <Link to='/account'>
             <div className='flex flex-col items-center hover:cursor-pointer group'>
-              <span className='text-2xl group-hover:text-blue-600 hcol'>< AiOutlineSetting/></span>
-              <span className='group-hover:text-blue-600 text-sm hcol'>Settings</span>
+              <span className='text-2xl group-hover:text-blue-600 hcol'>< AiOutlineUser/></span>
+              <span className='group-hover:text-blue-600 text-sm hcol'>Account</span>
             </div>
           </Link>
         </div>

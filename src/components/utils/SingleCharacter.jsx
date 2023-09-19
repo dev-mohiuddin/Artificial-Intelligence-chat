@@ -5,7 +5,7 @@ function SingleCharacter({persion}) {
     return (
         <>
             <Link to={`/chat/${persion?.id}`} >
-                <div className=' h-64 w-48 flex px-2 py-2 rounded-md hover:scale-105 duration-500 flex-col justify-between overflow-hidden cardcol shadow'>
+                <div className=' border border-gray-300 dark:border-gray-700 h-64 w-48 flex px-2 py-2 rounded-md hover:scale-105 duration-500 flex-col justify-between overflow-hidden cardcol shadow'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex gap-1 flex-col items-center'>
                             <span className='w-28 h-28 overflow-hidden'><img className='w-full h-full object-cover ov rounded-3xl' src={persion.image} alt="teacher" /></span>

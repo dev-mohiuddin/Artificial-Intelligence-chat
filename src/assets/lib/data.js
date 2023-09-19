@@ -148,7 +148,7 @@ export const characterData = [
         description : "Hi, I am Messi. I am Famous Footballer. You can speak with me about everything.",
         creator : "footballer",
         follow : "2.1m",
-        role : "me",
+        role : "admin",
     },
     {
         id : 5,
@@ -157,7 +157,7 @@ export const characterData = [
         description : "Hi, I am Robin crusho. You can speak with me about everything.",
         creator : "philosophy",
         follow : "2.1m",
-        role : "me",
+        role : "admin",
     },
     {
         id : 1,

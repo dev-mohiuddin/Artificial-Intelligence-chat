@@ -1,7 +1,7 @@
 
 import { Outlet } from "react-router-dom"
 
-function Admin() {
+function AdminLayout() {
   return (
     <div>
         <div><Outlet /></div>
@@ -9,4 +9,4 @@ function Admin() {
   )
 }
 
-export default Admin
+export default AdminLayout
