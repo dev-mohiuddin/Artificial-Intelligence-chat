@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 // client pages
 import Frontend from './components/layout/frontend/Frontend'
+import IsLogin from './pages/IsLogin'
 import Home from './pages/Home'
 import Create from './pages/Create'
 import Settings from './pages/Settings'
@@ -12,6 +13,7 @@ import SignUp from './pages/SignUp'
 import Chat from './pages/Chat'
 
 // admin pages
+import IsAdLogin from './pages/admin/IsAdLogin'
 import AdminLayout from './components/layout/admin/AdminLayout'
 import Dashboard from './pages/admin/Dashboard'
 import AdminLogin from './pages/admin/AdminLogin'
@@ -24,24 +26,31 @@ function App() {
   return (
     <div className={`${dark ? 'dark' : ''}`}>
 
-      {/* client route */}
+
       <Routes>
-        <Route path='/' element={<Frontend dark={dark} setDark={setDark} />}>
-          <Route index element={<Home />} />
-          <Route path='/create' element={<Create />} />
-          <Route path='/settings' element={<Settings />} />
-          <Route path='/community' element={<Community />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/sign-up' element={<SignUp />} />
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/sign-up' element={<SignUp />} />
+        {/* client route */}
+        <Route path='/' element={<IsLogin />} >
+          <Route path='/' element={<Frontend dark={dark} setDark={setDark} />}>
+            <Route index element={<Home />} />
+            <Route path='/create' element={<Create />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/community' element={<Community />} />
+          </Route>
+          <Route path='/chat/:id' element={<Chat />} />
         </Route>
-        <Route path='/chat/:id' element={<Chat />} />
         
         {/* admin route */}
-        <Route path='/admin' element={<AdminLayout />} >
-          <Route index element={<Dashboard />} />
-          <Route path='user' element={<AllUser />} />
+        <Route path='/admin/login' element={<AdminLogin />} />
+
+        <Route path='/admin' element={<IsAdLogin />} >
+          <Route path='/admin' element={<AdminLayout />} >
+            <Route index element={<Dashboard />} />
+            <Route path='user' element={<AllUser />} />
+          </Route>
         </Route>
-        <Route path='/admin-login' element={<AdminLogin />} />
       </Routes>
     </div>
   )

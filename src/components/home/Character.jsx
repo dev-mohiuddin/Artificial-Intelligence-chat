@@ -25,7 +25,7 @@ function Character() {
                 <select onChange={(e) => setOption(e.target.value)} className='focus:outline-0 px-2 py-1 rounded-md dark:bg-slate-800 bg-slate-100 pcol' name="" id="">
                     <option value="admin">Pre-bulid Bots</option>
                     <option value="public">Public Bots</option>
-                    <option className='md:hidden' value="me">My Bots</option>
+                    <option className='' value="me">My Bots</option>
                 </select>
                 <div className='hidden md:flex text-sm text-blue-500 hover:underline'>
                     <Link>See all Bots</Link>

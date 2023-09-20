@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 function Login() {
   return (
-    <div className='w-full h-full flex items-center justify-center'>
-        <div className='w-80 py-8 rounded-md card-col shadow-2xl border border-gray-400 dark:border-gray-600 p-5 flex flex-col gap-3 justify-center'>
+    <div className='w-full h-screen flex items-center justify-center'>
+        <div className='w-80 py-8 rounded-md cardcol shadow-2xl border border-gray-400 dark:border-gray-600 p-5 flex flex-col gap-3 justify-center'>
             <form className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base hcol' htmlFor="">Email</label>

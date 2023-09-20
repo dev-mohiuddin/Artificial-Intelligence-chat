@@ -2,7 +2,6 @@
 
 import Category from "../components/home/Category"
 import Character from "../components/home/Character"
-import MyCharacter from "../components/home/MyCharacter"
 
 
 function Home() {
@@ -11,7 +10,6 @@ function Home() {
       <div className="container">
         <Category />
         <Character />
-        <MyCharacter />
       </div>
     </div>
   )

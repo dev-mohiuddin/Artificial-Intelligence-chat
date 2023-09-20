@@ -4,6 +4,7 @@ import {BiMenu} from 'react-icons/bi'
 import {TbSettingsDollar} from 'react-icons/tb'
 import { Link  } from 'react-router-dom'
 import { useState } from 'react'
+import messi from '../../../assets/images/characterimg/messi.png'
 
 import MobileMenu from './MobileMenu'
 
@@ -12,7 +13,7 @@ function Header({dark, setDark}) {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
-    <div className='w-full glass bg-slate-100 md:bg-transparent dark:md:bg-none fixed z-50'>
+    <div className='w-full glass bg-slate-50 md:bg-transparent dark:md:bg-none fixed z-50'>
       <div className="container h-12 md:border md:border-x-0 md:border-t-0 border-b-gray-400 dark:border-b-gray-600 flex items-center justify-between">
           <div className='w-48'>
             <Link to="/">
@@ -39,9 +40,9 @@ function Header({dark, setDark}) {
                 <span className='flex items-center hcol dark:text-black gap-1'>Premium<TbSettingsDollar size={15}/></span>
               </div>
               <div className="flex gap-5 items-center">
-                <Link to="/login">
-                  <span className='bg-blue-500 hover:bg-blue-900 duration-200 hcol px-2 py-1 rounded-md cursor-pointer text-white'>Log in</span>
-                </Link>
+                <span className='h-8 w-8 overflow-hidden rounded-full cursor-pointer'>
+                  <img className='object-cover h-full w-full hover:scale-105 duration-300' src={messi} alt="avater" />
+                </span>
               </div>
             </div>
           </div>
