@@ -3,13 +3,12 @@ import { useState } from 'react'
 
 // client pages
 import Frontend from './components/layout/frontend/Frontend'
+import PublicPage from './pages/PublicPage'
 import IsLogin from './pages/IsLogin'
 import Home from './pages/Home'
 import Create from './pages/Create'
 import Settings from './pages/Settings'
 import Community from './pages/Community'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
 import Chat from './pages/Chat'
 
 // admin pages
@@ -29,8 +28,8 @@ function App() {
 
       <Routes>
 
-        <Route path='/login' element={<Login />} />
-        <Route path='/sign-up' element={<SignUp />} />
+    
+        <Route path='/home' element={<PublicPage />} />
         {/* client route */}
         <Route path='/' element={<IsLogin />} >
           <Route path='/' element={<Frontend dark={dark} setDark={setDark} />}>

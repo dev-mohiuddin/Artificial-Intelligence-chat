@@ -19,7 +19,7 @@ function Sidebar() {
               <span className='group-hover:text-blue-600 text-sm hcol'>Create</span>
             </div>
           </Link>
-          <Link to='/admin-login'>
+          <Link to='/admin/login'>
             <div className='flex flex-col items-center hover:cursor-pointer group'>
               <span className='text-[28px] group-hover:text-blue-600 hcol'>< PiUsersThreeThin/></span>
               <span className='group-hover:text-blue-600 text-sm hcol'>Community</span>

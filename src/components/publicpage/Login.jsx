@@ -1,9 +1,17 @@
-import { Link } from "react-router-dom"
 
-function Login() {
+import { RxCross2 } from "react-icons/rx"
+
+function Login({setLoginForm, setSignUpForm}) {
+
+    const toggleForm = ()=>{
+        setLoginForm(false)
+        setSignUpForm(true)
+    }
+
   return (
-    <div className='w-full h-screen flex items-center justify-center'>
-        <div className='w-80 py-8 rounded-md cardcol shadow-2xl border border-gray-400 dark:border-gray-600 p-5 flex flex-col gap-3 justify-center'>
+    <div className=' absolute bg-black/20 w-full h-screen flex items-center justify-center'>
+        <div className='relative w-80 py-8 rounded-md cardcol shadow-2xl border border-gray-400 dark:border-gray-600 p-5 flex flex-col gap-3 justify-center'>
+            <span onClick={()=> setLoginForm(false)} className="absolute top-2 right-2 hcol cursor-pointer"><RxCross2 size={22} /></span>
             <form className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base hcol' htmlFor="">Email</label>
@@ -17,9 +25,7 @@ function Login() {
             </form>
             <div className='flex gap-2'>
                 <p className='text-xs pcol'>Don't have an account.</p>
-                <Link to="/sign-up">
-                    <p className='text-xs underline text-blue-500 font-medium'>Sign up</p>
-                </Link>
+                <p onClick={toggleForm} className='text-xs cursor-pointer text-blue-500 font-medium'>Sign up</p>
             </div>
         </div>
 
