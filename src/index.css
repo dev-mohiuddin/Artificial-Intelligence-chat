@@ -27,6 +27,15 @@
   -ms-overflow-style: none; 
   scrollbar-width: none;  
 }
+.heroBg{
+  background-image: url('./assets/images/characterimg/herobg.png');
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  
+}
 
 
 @layer components {
