@@ -12,7 +12,7 @@ function Hero() {
 
     return (
         <div className='w-full heroBg '>
-            <div className='container bg-black/80 md:h-screen flex justify-center items-center '>
+            <div className='container bg-black/80 min-h-screen flex justify-center items-center '>
                 <div className='container flex flex-col-reverse gap-5 md:flex-row md:justify-between md:items-center  py-4'>
                     <div className='flex flex-col gap-4  '>
                         <h1 className='text-2xl md:text-4xl font-bold text-blue-500'>AI-Powered Conversational <br /> Experience Platform</h1>
