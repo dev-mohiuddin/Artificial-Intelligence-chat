@@ -39,8 +39,8 @@ function Login({setSignUpModal, setLoginModal}) {
         <div className='md:w-4/5 w-full bg-gray-400/10 md:py-8 rounded-md shadow-2xl p-5 flex flex-col gap-3'>
             <form onSubmit={login} className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
-                    <label className='text-base text-white' htmlFor="">Email</label>
-                    <input onChange={inputHandel} value={user.username} className='outline-none px-2 py-1 rounded-md bg-transparent placeholder:text-white border border-gray-600 text-white' type="text" placeholder='Email' name="username" required />
+                    <label className='text-base text-white' htmlFor="">Username</label>
+                    <input onChange={inputHandel} value={user.username} className='outline-none px-2 py-1 rounded-md bg-transparent placeholder:text-white border border-gray-600 text-white' type="text" placeholder='text' name="username" required />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Password</label>

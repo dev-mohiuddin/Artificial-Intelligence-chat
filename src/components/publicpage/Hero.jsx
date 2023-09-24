@@ -12,9 +12,9 @@ function Hero() {
 
     return (
         <div className='w-full heroBg '>
-            <div className='container bg-black/80 min-h-screen flex justify-center items-center '>
-                <div className='container flex flex-col-reverse gap-5 md:flex-row md:justify-between md:items-center  py-4'>
-                    <div className='flex flex-col gap-4  '>
+            <div className='container bg-black/80 min-h-[calc(100vh-48px)] min-md:h-[calc(100vh-64px)] flex justify-center items-center '>
+                <div className='container flex flex-col-reverse gap-5 md:flex-row md:justify-between md:items-center'>
+                    <div className='flex flex-col gap-4 md:mb-0 '>
                         <h1 className='text-2xl md:text-4xl font-bold text-blue-500'>AI-Powered Conversational <br /> Experience Platform</h1>
                         <h3 className='text-xl md:text-2xl font-medium text-white'>Automate 98% of your service support & <br /> drive 3x more lead conversion via chat</h3>
                         <div className='inline-block'>
