@@ -49,9 +49,9 @@ function Login({setSignUpModal, setLoginModal}) {
                 <input className='cursor-pointer px-3 py-1 bg-blue-500 rounded-md w-20 text-base font-medium text-white' type="submit" value="Login" />
             </form>
             <div className='flex gap-2'>
-                <p className='text-xs text-white'>Forgot.</p>
+                <p className='text-xs text-gray-200'>Forgot.</p>
                 <Link to="/forgot-password">
-                    <p className='text-xs underline cursor-pointer text-red-400 font-medium'>Password</p>
+                    <p className='text-xs hover:underline text-red-300 hover:text-red-400 cursor-pointer duration-300'>Password</p>
                 </Link>
             </div>
             <div className='flex gap-2 -mt-2'>
