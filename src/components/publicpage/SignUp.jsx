@@ -1,30 +1,32 @@
 
-
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-
+import { toastMessage } from "../../toast/toastMessage"
 import { userCheck, signUpUser } from "../../api/user"
 
 
 function SignUp({ setLoginModal, setSignUpModal }) {
 
+    const navigate = useNavigate();
+
     const toggleModal = () => {
         setSignUpModal(false)
         setLoginModal(true)
     }
-
-    const [userAlert, setUserAlert] = useState(null)
-    const [emailAlert, setEmailAlert] = useState(null)
-    const [user, setUser] = useState({
+    const defaultVaule = {
         name: "",
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
-    })
+    }
+    const [userAlert, setUserAlert] = useState(null)
+    const [emailAlert, setEmailAlert] = useState(null)
+    const [user, setUser] = useState(defaultVaule)
 
     // check user
 
-    const checkUserInput = (e) => {
+    const inputHandel = (e) => {
         setUser({
             ...user,
             [e.target.name]: e.target.value
@@ -32,34 +34,42 @@ function SignUp({ setLoginModal, setSignUpModal }) {
     }
 
     useEffect(() => {
-        if(user.username.length > 3) {
+        if (user.username.length > 3) {
             async function getCheck(user) {
                 const data = await userCheck(user)
+                console.log("user", data)
                 setUserAlert(data.username)
             }
             getCheck(user)
         }
-        if(user.email.length > 3) {
+        if (user.email.length > 3) {
             async function getCheck(user) {
                 const data = await userCheck(user)
+                console.log("email", data)  
                 setEmailAlert(data.email)
             }
             getCheck(user)
         }
-        if(user.username.length == 0){
+        if (user.username.length == 0) {
             setUserAlert(null)
         }
-        if(user.email.length == 0){
+        if (user.email.length == 0) {
             setEmailAlert(null)
         }
     }, [user,])
 
+    console.log(userAlert, emailAlert)
+
     // create user
 
-    const createUser = async(e)=>{
+
+    const createUser = async (e) => {
         e.preventDefault()
-        const data = await signUpUser(user)
-        console.log(data)
+            const data = await signUpUser(user)
+            toastMessage(data)
+            setUser(defaultVaule)
+            data.status ? navigate("/verify") : '';
+
     }
 
     return (
@@ -67,12 +77,12 @@ function SignUp({ setLoginModal, setSignUpModal }) {
             <form onSubmit={createUser} className='flex flex-col gap-2'>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Name</label>
-                    <input className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600 placeholder:text-white text-white' type="text" placeholder='Name' name="name" required />
+                    <input onChange={inputHandel} value={user.name} className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600 placeholder:text-white text-white' type="text" placeholder='Name' name="name" required />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Username</label>
                     <div className="flex flex-col gap-1">
-                        <input onChange={checkUserInput} className='outline-none px-2 py-1 rounded-md bg-transparent border placeholder:text-white text-white border-gray-600' type="text" placeholder='Username' name="username" required />
+                        <input onChange={inputHandel} value={user.username} className='outline-none px-2 py-1 rounded-md bg-transparent border placeholder:text-white text-white border-gray-600' type="text" placeholder='Username' name="username" required />
                         {userAlert === 0 && <span className="text-xs text-green-600">Username is avilable.</span>}
                         {userAlert === 1 && <span className="text-xs text-red-500">Username is already taken.</span>}
                     </div>
@@ -80,17 +90,17 @@ function SignUp({ setLoginModal, setSignUpModal }) {
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Email</label>
                     <div className="flex flex-col gap-2">
-                        <input onChange={checkUserInput} className='outline-none px-2 py-1 rounded-md bg-transparent border placeholder:text-white text-white border-gray-600' type="email" placeholder='Email' name="email" required />
+                        <input onChange={inputHandel} value={user.email} className='outline-none px-2 py-1 rounded-md bg-transparent border placeholder:text-white text-white border-gray-600' type="email" placeholder='Email' name="email" required />
                         {emailAlert === 1 && <span className="text-xs text-red-500">Email is already use.</span>}
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Password</label>
-                    <input className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600 placeholder:text-white text-white ' type="password" placeholder='Password' name="password" required />
+                    <input onChange={inputHandel} value={user.password} className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600 placeholder:text-white text-white ' type="password" placeholder='Password' name="password" required />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Confirm password</label>
-                    <input className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600 placeholder:text-white text-white ' type="password" placeholder='Password' name="confirmPassword" required />
+                    <input onChange={inputHandel} value={user.confirmPassword} className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600 placeholder:text-white text-white ' type="password" placeholder='Password' name="confirmPassword" required />
                 </div>
                 <input className='cursor-pointer px-3 py-1 bg-blue-500 rounded-md w-20 text-base font-medium text-white' type="submit" value="Sign Up" />
             </form>

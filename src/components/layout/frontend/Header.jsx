@@ -10,6 +10,7 @@ import MobileMenu from './MobileMenu'
 
 function Header({dark, setDark}) {
   
+
   const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
@@ -40,9 +41,9 @@ function Header({dark, setDark}) {
                 <span className='flex items-center hcol dark:text-black gap-1'>Premium<TbSettingsDollar size={15}/></span>
               </div>
               <div className="flex gap-5 items-center">
-                <span className='h-8 w-8 overflow-hidden rounded-full cursor-pointer'>
+                <Link title='Messi' className='overflow-hidden h-8 w-8 rounded-full' to="/account">
                   <img className='object-cover h-full w-full hover:scale-105 duration-300' src={messi} alt="avater" />
-                </span>
+                </Link>
               </div>
             </div>
           </div>
