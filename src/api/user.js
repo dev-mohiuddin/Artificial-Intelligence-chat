@@ -11,7 +11,7 @@ export const userCheck = async(checkUserData)=>{
         return data
 
     } catch (error) {
-        console.log(error)
+        return error.response.data 
     }
 }
 
@@ -20,19 +20,18 @@ export const signUpUser = async (signInData)=>{
         const {data} = await axios.post(`${BASE_URL}/user/create`, signInData ,{headers:{"Content-Type" : "application/json"}});
         return data
     } catch (error) {
-        console.log(error)
+        return error.response.data
     }
 }
 
 export const verifyUser = async(verifyData)=>{
 
-    console.log(verifyData)
     try {
-        const {data} = await axios.post(`${BASE_URL}/extra/mail/verify`, { "url": "920b3698-5edc-412f-b2f6-1281cf7e2096"})
-        console.log(data)
+        const {data} = await axios.post(`${BASE_URL}/extra/mail/verify`, {url : verifyData}, {headers:{"Content-Type" : "application/json"}})
+
         return data
     } catch (error) {
-        console.log(error)
+        return error.response.data
     }
 }
 
@@ -41,10 +40,32 @@ export const userLogin = async(loginData)=>{
         
         const {data} = await axios.post(`${BASE_URL}/auth/login`, loginData, {headers:{"Content-Type" : "application/json"}})
         
-        window.localStorage.setItem("userInfo", data.token.token )
+        if(data.status ===true){
+            window.localStorage.setItem("userInfo", data.token.token )
+        }
         return data ;
 
     } catch (error) {
        return error.response.data
+    }
+}
+
+export const forgotPassword = async(emailData)=>{
+    try {
+        const {data} = await axios.post(`${BASE_URL}/extra/forget/password/request`,{email: emailData} )
+
+        return data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
+export const updatePassword = async(passData)=>{
+    try {
+        const {data} = await axios.post(`${BASE_URL}/extra/forget/password/update`, passData)
+
+        return data
+    } catch (error) {
+        return error.response.data
     }
 }

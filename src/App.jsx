@@ -2,11 +2,17 @@ import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 
+
+// public Routes
+import PublicPage from './pages/PublicPage'
+import UserVerifyComplete from './pages/utilisPage/UserVerifyComplete'
+import UserVerify from './pages/utilisPage/UserVerify'
+import ForgotPass from './pages/utilisPage/ForgotPass'
+import PasswordUpdate from './pages/utilisPage/PasswordUpdate'
+
 // client pages
 import Frontend from './components/layout/frontend/Frontend'
-import PublicPage from './pages/PublicPage'
-import UserVerify from './pages/UserVerify'
-import IsLogin from './pages/IsLogin'
+import IsLogin from './pages/utilisPage/IsLogin'
 import Home from './pages/Home'
 import Create from './pages/Create'
 import Account from './pages/Account'
@@ -33,8 +39,14 @@ function App() {
           reverseOrder={false}
         />
       <Routes>
+
+        {/* public Route */}
         <Route path='/home' element={<PublicPage />} />
         <Route path='/verify' element={<UserVerify />} />
+        <Route path='/verify/:url' element={<UserVerifyComplete />} />
+        <Route path='/forgot-password' element={<ForgotPass />} />
+        <Route path='/forgot-password/:url' element={<PasswordUpdate />} />
+
         {/* client route */}
         <Route path='/' element={<IsLogin />} >
           <Route path='/' element={<Frontend dark={dark} setDark={setDark} />}>
