@@ -24,8 +24,9 @@ import Chat from './pages/Chat'
 import IsAdLogin from './pages/admin/IsAdLogin'
 import AdminLayout from './components/layout/admin/AdminLayout'
 import Dashboard from './pages/admin/Dashboard'
-import AdminLogin from './pages/admin/AdminLogin'
 import AllUser from './pages/admin/AllUser'
+import AllPrompts from './pages/admin/AllPrompts'
+import CreatePrompt from './pages/admin/CreatePrompt'
 
 function App() {
 
@@ -60,12 +61,12 @@ function App() {
         </Route>
 
         {/* admin route */}
-        <Route path='/admin/login' element={<AdminLogin />} />
-
         <Route path='/admin' element={<IsAdLogin />} >
           <Route path='/admin' element={<AdminLayout />} >
             <Route index element={<Dashboard />} />
-            <Route path='user' element={<AllUser />} />
+            <Route path='all-users' element={<AllUser />} />
+            <Route path='create-prompt' element={<CreatePrompt />} />
+            <Route path='all-prompts' element={<AllPrompts />} />
           </Route>
         </Route>
       </Routes>

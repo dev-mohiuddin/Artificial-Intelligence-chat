@@ -5,13 +5,15 @@ import {TbSettingsDollar} from 'react-icons/tb'
 import { Link  } from 'react-router-dom'
 import { useState } from 'react'
 import messi from '../../../assets/images/characterimg/messi.png'
-
+import useAuth from '../../../Hooks/useAuth'
 import MobileMenu from './MobileMenu'
 
 function Header({dark, setDark}) {
   
 
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const user = useAuth();
 
   return (
     <div className='w-full glass bg-slate-50 md:bg-transparent dark:md:bg-none fixed z-50'>
@@ -41,7 +43,7 @@ function Header({dark, setDark}) {
                 <span className='flex items-center hcol dark:text-black gap-1'>Premium<TbSettingsDollar size={15}/></span>
               </div>
               <div className="flex gap-5 items-center">
-                <Link title='Messi' className='overflow-hidden h-8 w-8 rounded-full' to="/account">
+                <Link title={user.name} className='overflow-hidden h-8 w-8 rounded-full' to="/account">
                   <img className='object-cover h-full w-full hover:scale-105 duration-300' src={messi} alt="avater" />
                 </Link>
               </div>

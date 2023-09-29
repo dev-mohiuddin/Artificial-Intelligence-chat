@@ -12,6 +12,7 @@ function ForgotPass() {
         e.preventDefault()
 
         const data = await forgotPassword(email)
+
         toastMessage(data)
         setEmail("")
     }

@@ -1,8 +1,12 @@
-import React from 'react'
+
+
+import Card from "../../components/admin/dashboard/Card"
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className='w-full '>
+      <Card />
+    </div>
   )
 }
 

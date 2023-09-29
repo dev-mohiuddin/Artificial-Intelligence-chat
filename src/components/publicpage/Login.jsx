@@ -28,7 +28,15 @@ function Login({setSignUpModal, setLoginModal}) {
 
         const data = await userLogin(user)
         toastMessage(data)
-        data.status ? navigate("/") : "";
+        if(data.status=== true && data.role === "admin"){
+            navigate("/admin", {replace : true})
+        }else if(data.status===true && data.role=== "user"){
+            navigate("/" , {replace : true})
+        }else{
+           console.log("error")
+        }
+        
+        // data.status && data.role  ? navigate("/" ,{replace : true}) : "";
         setUser({
             username: "",
             password: "",
@@ -40,7 +48,7 @@ function Login({setSignUpModal, setLoginModal}) {
             <form onSubmit={login} className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Username</label>
-                    <input onChange={inputHandel} value={user.username} className='outline-none px-2 py-1 rounded-md bg-transparent placeholder:text-white border border-gray-600 text-white' type="text" placeholder='text' name="username" required />
+                    <input onChange={inputHandel} value={user.username} className='outline-none px-2 py-1 rounded-md bg-transparent placeholder:text-white border border-gray-600 text-white' type="text" placeholder='username' name="username" required />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Password</label>
