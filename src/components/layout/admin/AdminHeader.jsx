@@ -2,6 +2,8 @@
 
 import { FaBarsStaggered } from 'react-icons/fa6'
 import { BsSearch, BsChevronDown } from 'react-icons/bs'
+import { PiUserSwitch } from 'react-icons/pi'
+import { Link } from 'react-router-dom'
 
 import messi from '../../../assets/images/characterimg/messi.png'
 import useAdminAuth from '../../../Hooks/useAdminAuth'
@@ -18,6 +20,9 @@ function AdminHeader() {
           <h1 className='text-xl font-bold uppercase text-gray-100 cursor-pointer'>Character.ai</h1>
           <span className='text-lg text-gray-100 cursor-pointer'><FaBarsStaggered /></span>
           <span className='text-lg text-gray-50 cursor-pointer'><BsSearch /></span>
+          <Link to='/'>
+            <span className='text-xl text-gray-50 cursor-pointer'><PiUserSwitch /></span>
+          </Link>
         </div>
         <div className='flex items-center gap-3 cursor-pointer'>
           <div className='h-8 w-8 rounded-full overflow-hidden'>

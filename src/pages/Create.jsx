@@ -1,11 +1,66 @@
 
-import {GiOctoman} from 'react-icons/gi'
+
+import { useEffect, useState } from 'react'
+import { GiOctoman } from 'react-icons/gi'
+import { allPrompts } from '../api/prompt';
+import useAuth from '../Hooks/useAuth'
+import { toastMessage } from '../toast/toastMessage';
+import { createCharacter } from '../api/character';
 
 function Create() {
 
+  const user = useAuth()
+  const [ctg, setCtg] = useState();
+  const [file, setFile] = useState(null);
+  const [input, setInput] = useState({
+    user_id: user.id,
+    prompt_id: "",
+    name: "",
+    username: "",
+    prompt_topic: "",
+    visibility: true,
+  });
 
-  const createCha = (e)=>{
+
+  useEffect(() => {
+    const allCgt = async () => {
+
+      const { data } = await allPrompts();
+      setCtg(data)
+    }
+
+    allCgt()
+  }, [])
+
+  const inputHandel = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const fileHandel = (e) => {
+    setFile(e.target.files[0])
+  }
+
+  const createCha = async (e) => {
     e.preventDefault()
+    try {
+      const data = new FormData();
+
+      data.append("image", file);
+      data.append("data", JSON.stringify(input))
+      const res = await createCharacter(data)
+      toastMessage(res)
+      setInput({
+        name: "",
+        username: "",
+        prompt_topic: ""
+      })
+      setFile(null)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -21,47 +76,61 @@ function Create() {
           </div>
         </div>
         <form className='flex flex-col gap-5' onSubmit={createCha}>
+
           <div className='space-y-2'>
-            <h1 className='hcol text-base'>Name</h1>
+            <h1 className='hcol text-base'>Categories</h1>
             <div className='flex flex-col gap-1'>
-              <label className='pcol text-sm' htmlFor="">The name can include first and last names.</label>
-              <input className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" name="" id="" required />
+              <label className='pcol text-sm' htmlFor="">Select your preferred category to create a character</label>
+              <select onChange={inputHandel} name="prompt_id" className='h-10 focus:outline-0 bg-transparent border border-gray-400 dark:border-gray-600 rounded-md pcol px-3'>
+                {
+                  ctg?.map((item) => (
+                    <option value={item._id} key={item._id} className='dark:bg-slate-900'>{item.name}</option>
+                  ))
+                }
+              </select>
             </div>
           </div>
+
           <div className='space-y-2'>
-            <h1 className='hcol text-base'>Greeting</h1>
+            <h1 className='hcol text-base'>Character Topic</h1>
             <div className='flex flex-col gap-1'>
-              <label className='pcol text-sm' htmlFor="">What would they say to introduce themselves? For example, "Elon Musk" could say: "Hello I am Elon Musk. I was born in March 1971, and I'm a genius businessman, innovative leader, and a very attractive person.".</label>
-              <textarea className='px-3 py-1 pcol bg-transparent h-32 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" name="" id="" required />
+              <label className='pcol text-sm' htmlFor="">You name the subcategory according to the category.</label>
+              <input onChange={inputHandel} value={input.prompt_topic} name="prompt_topic" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
             </div>
           </div>
+
+          <div className='space-y-2'>
+            <h1 className='hcol text-base'>Character name</h1>
+            <div className='flex flex-col gap-1'>
+              <label className='pcol text-sm' htmlFor="">Name your character according to the category.</label>
+              <input onChange={inputHandel} value={input.name} name="name" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
+            </div>
+          </div>
+
+          <div className='space-y-2'>
+            <h1 className='hcol text-base'>Character username</h1>
+            <div className='flex flex-col gap-1'>
+              <label className='pcol text-sm' htmlFor="">Enter a unique username.</label>
+              <input onChange={inputHandel} value={input.username} name="username" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
+            </div>
+          </div>
+
           <div className='space-y-2'>
             <h1 className='hcol text-base'>Visibility</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Who is allowed to talk to them?</label>
-              <select name="" className='h-10 focus:outline-0 bg-transparent border border-gray-400 dark:border-gray-600 rounded-md pcol px-3'>
-                <option className='dark:bg-slate-900'>Public: Anyone can chat</option>
-                <option className='dark:bg-slate-900'>Unlisted: Anyone with the link can chat</option>
-                <option className='dark:bg-slate-900'>Private: Only you can chat</option>
+              <select onChange={inputHandel} name="visibility" className='h-10 focus:outline-0 bg-transparent border border-gray-400 dark:border-gray-600 rounded-md pcol px-3'>
+                <option value={true} className='dark:bg-slate-900'>Public</option>
+                <option value={false} className='dark:bg-slate-900'>Private</option>
               </select>
             </div>
           </div>
-          <div className='space-y-2'>
-            <h1 className='hcol text-base'>Categories</h1>
-            <div className='flex flex-col gap-1'>
-              <label className='pcol text-sm' htmlFor="">Who is allowed to talk to them?</label>
-              <select name="" className='h-10 focus:outline-0 bg-transparent border border-gray-400 dark:border-gray-600 rounded-md pcol px-3'>
-                <option className='dark:bg-slate-900'>Programmer</option>
-                <option className='dark:bg-slate-900'>Desinger</option>
-                <option className='dark:bg-slate-900'>Famous Pepole</option>
-              </select>
-            </div>
-          </div>
+
           <div className='space-y-2'>
             <h1 className='hcol text-base'>Avatar</h1>
             <div className='flex flex-col gap-1'>
-              <label className='pcol text-sm' htmlFor="">You can either create an image from text or upload an image..</label>
-              <input type="file" name="" className='bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
+              <label className='pcol text-sm' htmlFor="">Upload an image...</label>
+              <input type="file" onChange={fileHandel} name="file" className='bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
             </div>
           </div>
           <div className='space-y-2 mb-5'>

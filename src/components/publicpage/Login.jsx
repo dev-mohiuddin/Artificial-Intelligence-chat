@@ -4,43 +4,45 @@ import { Link, useNavigate } from "react-router-dom"
 import { userLogin } from "../../api/user"
 import { toastMessage } from "../../toast/toastMessage";
 
-function Login({setSignUpModal, setLoginModal}) {
+function Login({ setSignUpModal, setLoginModal }) {
 
     const navigate = useNavigate();
     const [user, setUser] = useState({
-        username : "",
-        password : "",
+        username: "",
+        password: "",
     })
-    const toggleModal = ()=>{
+    const toggleModal = () => {
         setLoginModal(false)
         setSignUpModal(true)
     }
 
-    const inputHandel = (e)=>{
+    const inputHandel = (e) => {
         setUser({
             ...user,
             [e.target.name]: e.target.value
         })
     }
 
-    const login = async(e)=>{
+    const login = async (e) => {
         e.preventDefault()
-
-        const data = await userLogin(user)
-        toastMessage(data)
-        if(data.status=== true && data.role === "admin"){
-            navigate("/admin", {replace : true})
-        }else if(data.status===true && data.role=== "user"){
-            navigate("/" , {replace : true})
-        }else{
-           console.log("error")
+        try {
+            const data = await userLogin(user)
+            toastMessage(data)
+            if (data.status === true && data.role === "admin") {
+                navigate("/admin")
+            } else if (data.status === true && data.role === "user") {
+                navigate("/")
+            } else {
+                console.log("error")
+            }
+            setUser({
+                username: "",
+                password: "",
+            })
+        } catch (error) {
+            console.log(error)
         }
-        
-        // data.status && data.role  ? navigate("/" ,{replace : true}) : "";
-        setUser({
-            username: "",
-            password: "",
-        })
+
     }
 
     return (

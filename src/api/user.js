@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 
+
 const BASE_URL = "http://localhost:3000/api/v1"
 
 export const userCheck = async(checkUserData)=>{
@@ -40,13 +41,13 @@ export const userLogin = async(loginData)=>{
         
         const {data} = await axios.post(`${BASE_URL}/auth/login`, loginData, {headers:{"Content-Type" : "application/json"}})
         
-        if(data.status ===true){
-            window.localStorage.setItem("userInfo", data.token.token )
+        if(data.status){
+            localStorage.setItem("userInfo", data.token.token )
         }
         return data ;
 
     } catch (error) {
-       return error.response.data
+       return error.response.data;
     }
 }
 
