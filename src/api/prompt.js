@@ -2,12 +2,13 @@
 
 import axios from 'axios'
 
-const BASE_URL = "http://localhost:3000/api/v1"
+import { baseUrl } from './lib/helper'
+
 const token = localStorage.getItem("userInfo")
 
 export const promptCreate = async (promptData) => {
     try {
-        const { data } = await axios.post(`${BASE_URL}/character-prompt/create`, promptData, {
+        const { data } = await axios.post(`${baseUrl}/api/v1/character-prompt/create`, promptData, {
             headers: {
                 'Authorization': `${token}`
             }
@@ -23,7 +24,7 @@ export const promptCreate = async (promptData) => {
 
 export const allPrompts = async () => {
     try {
-        const { data } = await axios.get(`${BASE_URL}/character-prompt/all-prompt`, {
+        const { data } = await axios.get(`${baseUrl}/api/v1/character-prompt/all-prompt`, {
             headers: {
                 'Authorization': `${token}`
             }
@@ -37,7 +38,7 @@ export const allPrompts = async () => {
 
 export const promptDelete = async (id) => {
     try {
-        const { data } = await axios.delete(`${BASE_URL}/character-prompt/delete/${id}`, {
+        const { data } = await axios.delete(`${baseUrl}/api/v1/character-prompt/delete/${id}`, {
             headers: {
                 'Authorization': `${token}`
             }

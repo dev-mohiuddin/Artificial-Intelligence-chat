@@ -1,33 +1,88 @@
 
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { AiOutlineSend } from 'react-icons/ai'
 
 import ChatHeader from '../components/chat/ChatHeader'
 import ChatContainer from '../components/chat/ChatContainer'
-import ChatFooter from '../components/chat/ChatFooter'
-
-import {characterData} from '../assets/lib/data'
+import useAuth from '../Hooks/useAuth'
+import { singleCharacter, characterReplay } from '../api/character'
 
 
 function Chat() {
 
-  const {id} = useParams();
-  const [aiChat, setAiChat] = useState([]);
-  
-  useEffect(()=>{
-    const data = characterData.find((ai)=> ai.id == id)
-    setAiChat(data)
-  }, [id])  
+  const user = useAuth()
+  const { id } = useParams();
+  const [singleBot, setSingleBot] = useState([]);
+  const [inputData, setInputData] = useState({
+    user_id : user.id,
+    character_id : id,
+    userInput : "",
+  })
+
+  const [chats, setChats] = useState([
+    {
+      user: id,
+      message: `Hello I am Character ai. How can I help you today?`
+    },
+  ])
+
+  useEffect(() => {
+    async function getCharacter(id) {
+      try {
+        const data = await singleCharacter(id);
+        const charaData = data?.character[0];
+        setSingleBot(charaData)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getCharacter(id)
+  }, [id])
+
+  const inputHandel = (e)=>{
+    setInputData({
+      ...inputData,
+      [e.target.name] : e.target.value,
+    })
+  }
+
+  const onSubmitHandel = async (e)=>{
+    e.preventDefault()
+    try {
+      setChats([...chats, {user: user.id, message : inputData.userInput}])
+      setInputData({...inputData, userInput : ""})
+      const data = await characterReplay(inputData)
+      setChats([...chats,
+        {user : user.id , message : inputData.userInput},
+        {user: id, message : data.reply}
+      ])
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className='w-full main-bg'>
-        <div className='glass h-screen '>
-            <div className='container px-0 relative max-w-3xl h-screen flex flex-col justify-between'>
-                <ChatHeader aiChat={aiChat} />
-                <ChatContainer aiChat={aiChat} />
-                <ChatFooter />
+      <div className='glass h-screen '>
+        <div className='container px-0 relative max-w-3xl h-screen flex flex-col justify-between'>
+          <ChatHeader singleBot={singleBot} />
+          <ChatContainer chats={chats} user={user} singleBot={singleBot} />
+
+          <div className='fixed bottom-0 w-full flex'>
+            <div className='w-[768px] dark:bg-slate-900 bg-slate-100 px-3 border border-x-0 border-b-0 border-t-gray-400 dark:border-t-gray-600'>
+              <form onSubmit={onSubmitHandel} >
+                <div className='relative flex justify-center items-center h-14 md:h-16'>
+                  <input onChange={inputHandel} value={inputData.userInput} name='userInput' className=' md:mx-4 outline-none rounded-full w-full border border-blue-500 bg-transparent h-9 px-4 pcol' placeholder='Type your message' type="text" required />
+                  <input className='absolute md:mx-4 right-0 opacity-0 p-1 rounded-2xl cursor-pointer z-10' type="submit" value="Click" />
+                  <span className='absolute md:mx-4 right-1 text-xl text-blue-500 cursor-pointer p-1'><AiOutlineSend /></span>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   )
 }

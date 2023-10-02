@@ -2,8 +2,9 @@ import { MdOutlineArrowBackIosNew } from 'react-icons/md'
 import { PiShareFatLight, PiDotsThreeVerticalBold } from 'react-icons/pi'
 import { BiMessageRounded } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from '../../api/lib/helper'
 
-function ChatHeader({ aiChat }) {
+function ChatHeader({ singleBot }) {
 
   const navigate = useNavigate();
 
@@ -13,14 +14,14 @@ function ChatHeader({ aiChat }) {
         <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
         <div className='flex items-center gap-2 '>
           <div className='flex justify-center items-center rounded-full overflow-hidden h-10 w-10 md:w-12 md:h-12 '>
-            <img className='w-full h-full object-cover' src={aiChat.image} alt="ai" />
+            <img className='w-full h-full object-cover' src={baseUrl+''+singleBot?.image} alt="ai" />
           </div>
           <div className='flex flex-1 flex-col justify-center'>
             <span className='flex items-center gap-1 md:gap-2'>
-              <h2 className='font-semibold text-lg hcol md:font-bold capitalize'>{aiChat.name}</h2>
-              <p className='flex items-center text-xs font-medium pcol'> <BiMessageRounded size={14} />{aiChat.follow}</p>
+              <h2 className='font-semibold text-lg hcol md:font-bold capitalize'>{singleBot?.name}</h2>
+              <p className='flex items-center text-xs font-medium pcol gap-1'> <BiMessageRounded size={14} />{singleBot?.total_message}</p>
             </span>
-            <p className='text-sm font-normal pcol'>Created by <span className='font-medium italic'>@{aiChat.creator}</span></p>
+            <p className='text-sm font-normal pcol'>Created by <span className='font-medium italic'>@{singleBot?.user_id}</span></p>
           </div>
         </div>
         <div className='flex items-center gap-2'>

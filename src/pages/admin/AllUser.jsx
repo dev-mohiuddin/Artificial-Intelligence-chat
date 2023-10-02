@@ -1,8 +1,12 @@
 import React from 'react'
 
 function AllUser() {
+
+
   return (
-    <div>AllUser</div>
+    <div>
+      <h1>hi</h1>
+    </div>
   )
 }
 

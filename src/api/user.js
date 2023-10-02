@@ -3,11 +3,11 @@
 import axios from 'axios'
 
 
-const BASE_URL = "http://localhost:3000/api/v1"
+import { baseUrl } from './lib/helper'
 
 export const userCheck = async(checkUserData)=>{
     try {
-        const {data} = await axios.post(`${BASE_URL}/user/validate`, {checkUserData})
+        const {data} = await axios.post(`${baseUrl}/api/v1/user/validate`, {checkUserData})
 
         return data
 
@@ -18,7 +18,7 @@ export const userCheck = async(checkUserData)=>{
 
 export const signUpUser = async (signInData)=>{
     try {
-        const {data} = await axios.post(`${BASE_URL}/user/create`, signInData ,{headers:{"Content-Type" : "application/json"}});
+        const {data} = await axios.post(`${baseUrl}/api/v1/user/create`, signInData ,{headers:{"Content-Type" : "application/json"}});
         return data
     } catch (error) {
         return error.response.data
@@ -28,7 +28,7 @@ export const signUpUser = async (signInData)=>{
 export const verifyUser = async(verifyData)=>{
 
     try {
-        const {data} = await axios.post(`${BASE_URL}/extra/mail/verify`, {url : verifyData}, {headers:{"Content-Type" : "application/json"}})
+        const {data} = await axios.post(`${baseUrl}/api/v1/extra/mail/verify`, {url : verifyData}, {headers:{"Content-Type" : "application/json"}})
 
         return data
     } catch (error) {
@@ -39,7 +39,7 @@ export const verifyUser = async(verifyData)=>{
 export const userLogin = async(loginData)=>{
     try {
         
-        const {data} = await axios.post(`${BASE_URL}/auth/login`, loginData, {headers:{"Content-Type" : "application/json"}})
+        const {data} = await axios.post(`${baseUrl}/api/v1/auth/login`, loginData, {headers:{"Content-Type" : "application/json"}})
         
         if(data.status){
             localStorage.setItem("userInfo", data.token.token )
@@ -53,7 +53,7 @@ export const userLogin = async(loginData)=>{
 
 export const forgotPassword = async(emailData)=>{
     try {
-        const {data} = await axios.post(`${BASE_URL}/extra/forget/password/request`,{email: emailData} )
+        const {data} = await axios.post(`${baseUrl}/api/v1/extra/forget/password/request`,{email: emailData} )
 
         return data
     } catch (error) {
@@ -63,7 +63,7 @@ export const forgotPassword = async(emailData)=>{
 
 export const updatePassword = async(passData)=>{
     try {
-        const {data} = await axios.post(`${BASE_URL}/extra/forget/password/update`, passData)
+        const {data} = await axios.post(`${baseUrl}/api/v1/extra/forget/password/update`, passData)
 
         return data
     } catch (error) {

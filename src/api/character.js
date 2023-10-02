@@ -2,12 +2,12 @@
 
 import axios from 'axios'
 
-const BASE_URL = "http://localhost:3000/api/v1"
+import { baseUrl } from './lib/helper'
 const token = localStorage.getItem("userInfo")
 
 export const createCharacter = async (characterData) => {
     try {
-        const { data } = await axios.post(`${BASE_URL}//character/create`, characterData, {
+        const { data } = await axios.post(`${baseUrl}/api/v1/character/create`, characterData, {
             headers: {
                 'Authorization': `${token}`
             }
@@ -15,6 +15,50 @@ export const createCharacter = async (characterData) => {
 
         return data
 
+    } catch (error) {
+        return error.response.data
+    }
+}
+
+export const allCharacter = async () => {
+    try {
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/all-character`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+
+        return data
+
+    } catch (error) {
+        return error.response.data;
+    }
+}
+
+export const singleCharacter = async (id) => {
+
+    try {
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/single/${id}`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        return data;
+
+    } catch (error) {
+        return error.response.data;
+    }
+}
+
+export const characterReplay = async(userInput) => {
+    try {
+        const { data } = await axios.post(`${baseUrl}/api/v1/bot/reply`, userInput, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        
+        return data
     } catch (error) {
         return error.response.data
     }
