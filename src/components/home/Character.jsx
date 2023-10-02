@@ -36,14 +36,14 @@ function Character() {
             </div>
             <div className='md:hidden flex flex-col gap-2 pt-2'>
                 {
-                    characters?.map((persion, val) => (
+                   characters && characters?.map((persion, val) => (
                         <MobileSingleCharacter key={val} persion={persion} />
                     ))
                 }
             </div>
             <div className='hidden md:flex justify-start items-center p-4 gap-5 overflow-x-auto overflow-y-hidden scroll-hide'>
                 {
-                    characters?.map((persion, val) => (
+                   characters && characters?.map((persion, val) => (
                         <SingleCharacter persion={persion} key={val} />
                     ))
                 }

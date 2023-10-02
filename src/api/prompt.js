@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { baseUrl } from './lib/helper'
 
-const token = localStorage.getItem("userInfo")
+const token = window.localStorage.getItem("userInfo")
 
 export const promptCreate = async (promptData) => {
     try {

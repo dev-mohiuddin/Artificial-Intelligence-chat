@@ -10,7 +10,7 @@ import { createCharacter } from '../api/character';
 function Create() {
 
   const user = useAuth()
-  const [ctg, setCtg] = useState();
+  const [ctg, setCtg] = useState([]);
   const [file, setFile] = useState(null);
   const [input, setInput] = useState({
     user_id: user.id,
@@ -23,12 +23,16 @@ function Create() {
 
 
   useEffect(() => {
+
     const allCgt = async () => {
-
-      const { data } = await allPrompts();
-      setCtg(data)
+      try {
+        const data = await allPrompts();
+        const ctgData = data?.data;
+        setCtg(ctgData)
+      } catch (error) {
+        
+      }
     }
-
     allCgt()
   }, [])
 
@@ -83,7 +87,7 @@ function Create() {
               <label className='pcol text-sm' htmlFor="">Select your preferred category to create a character</label>
               <select onChange={inputHandel} name="prompt_id" className='h-10 focus:outline-0 bg-transparent border border-gray-400 dark:border-gray-600 rounded-md pcol px-3'>
                 {
-                  ctg?.map((item) => (
+                  ctg && ctg?.map((item) => (
                     <option value={item._id} key={item._id} className='dark:bg-slate-900'>{item.name}</option>
                   ))
                 }

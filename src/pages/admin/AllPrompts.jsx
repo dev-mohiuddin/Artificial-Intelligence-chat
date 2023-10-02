@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react"
 import { useNavigate} from 'react-router-dom'
 import { AiOutlineDelete } from 'react-icons/ai'
-import { allPrompts } from "../../api/prompt"
-import { promptDelete } from "../../api/prompt";
+
+import { allPrompts, promptDelete } from "../../api/prompt"
 import { toastMessage } from "../../toast/toastMessage";
 
 function AllPrompts() {
 
-  const [prompts, setPrompts] = useState();
+  const [prompts, setPrompts] = useState([]);
   const [modal, setModal] = useState({
     status : false,
     promptName: "",
@@ -18,12 +18,16 @@ function AllPrompts() {
 
   useEffect(() => {
     async function promptData() {
-      const { data } = await allPrompts();
-      setPrompts(data)
+      try {
+        const data = await allPrompts();
+        const promptsData = data?.data;
+        setPrompts(promptsData)
+      } catch (error) {
+        
+      }
     }
     promptData()
   }, [])
-
 
   const openModal = (singlePrompt)=>{
 
@@ -39,7 +43,7 @@ function AllPrompts() {
       {modal.status && <Modal modal={modal} setModal={setModal} />}
       <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
         {
-          prompts?.map((singlePrompt, val) => (
+          prompts && prompts?.map((singlePrompt, val) => (
             <div key={val} className="relative flex flex-col group justify-center items-center gap-5 p-4 rounded-md bg-slate-50 shadow hover:scale-105 duration-300">
               <span onClick={()=> openModal(singlePrompt) } className="absolute cursor-pointer text-red-400 hidden group-hover:flex duration-300 right-2 top-2"><AiOutlineDelete /></span>
               <h1 className="text-2xl font-bold text-gray-700">{singlePrompt.name}</h1>

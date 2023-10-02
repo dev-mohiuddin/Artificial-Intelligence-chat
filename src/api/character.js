@@ -9,7 +9,8 @@ export const createCharacter = async (characterData) => {
     try {
         const { data } = await axios.post(`${baseUrl}/api/v1/character/create`, characterData, {
             headers: {
-                'Authorization': `${token}`
+                'Authorization': `${token}`,
+                "Content-Type" : "application/json"
             }
         })
 
