@@ -47,7 +47,6 @@ function AllPrompts() {
             <div key={val} className="relative flex flex-col group justify-center items-center gap-5 p-4 rounded-md bg-slate-50 shadow hover:scale-105 duration-300">
               <span onClick={()=> openModal(singlePrompt) } className="absolute cursor-pointer text-red-400 hidden group-hover:flex duration-300 right-2 top-2"><AiOutlineDelete /></span>
               <h1 className="text-2xl font-bold text-gray-700">{singlePrompt.name}</h1>
-              <p className="text-base text-gray-700 text-center">{singlePrompt.prompt}</p>
             </div>
           ))
         }

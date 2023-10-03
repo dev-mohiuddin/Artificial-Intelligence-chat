@@ -6,6 +6,7 @@ import { baseUrl } from './lib/helper'
 const token = localStorage.getItem("userInfo")
 
 export const createCharacter = async (characterData) => {
+
     try {
         const { data } = await axios.post(`${baseUrl}/api/v1/character/create`, characterData, {
             headers: {
@@ -58,6 +59,7 @@ export const characterReplay = async(userInput) => {
                 'Authorization': `${token}`
             }
         })
+        console.log(data)
         
         return data
     } catch (error) {

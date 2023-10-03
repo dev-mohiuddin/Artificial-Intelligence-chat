@@ -11,7 +11,7 @@ function Create() {
 
   const user = useAuth()
   const [ctg, setCtg] = useState([]);
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState("");
   const [input, setInput] = useState({
     user_id: user.id,
     prompt_id: "",
@@ -44,6 +44,10 @@ function Create() {
   }
 
   const fileHandel = (e) => {
+    
+    if (!e.target.files) {
+      return;
+    }
     setFile(e.target.files[0])
   }
 
@@ -51,17 +55,17 @@ function Create() {
     e.preventDefault()
     try {
       const data = new FormData();
-
-      data.append("image", file);
+      console.log(file)
+      data.append("image", file)
       data.append("data", JSON.stringify(input))
+
       const res = await createCharacter(data)
       toastMessage(res)
-      setInput({
-        name: "",
-        username: "",
-        prompt_topic: ""
-      })
-      setFile(null)
+      // setInput({
+      //   name: "",
+      //   username: "",
+      //   prompt_topic: ""
+      // })
     } catch (error) {
       console.log(error)
     }
@@ -133,7 +137,7 @@ function Create() {
           <div className='space-y-2'>
             <h1 className='hcol text-base'>Avatar</h1>
             <div className='flex flex-col gap-1'>
-              <label className='pcol text-sm' htmlFor="">Upload an image...</label>
+              <label className='pcol text-sm' htmlFor="">Upload an image. jpg, png and jpeg only</label>
               <input type="file" onChange={fileHandel} name="file" className='bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
             </div>
           </div>
