@@ -43,12 +43,13 @@ function AllPrompts() {
       {modal.status && <Modal modal={modal} setModal={setModal} />}
       <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
         {
-          prompts && prompts?.map((singlePrompt, val) => (
+          prompts ? prompts?.map((singlePrompt, val) => (
             <div key={val} className="relative flex flex-col group justify-center items-center gap-5 p-4 rounded-md bg-slate-50 shadow hover:scale-105 duration-300">
               <span onClick={()=> openModal(singlePrompt) } className="absolute cursor-pointer text-red-400 hidden group-hover:flex duration-300 right-2 top-2"><AiOutlineDelete /></span>
               <h1 className="text-2xl font-bold text-gray-700">{singlePrompt.name}</h1>
             </div>
-          ))
+          )):
+          <div>No Prompt Found </div>
         }
       </div>
     </div>

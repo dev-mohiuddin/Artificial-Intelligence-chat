@@ -23,18 +23,23 @@ function Create() {
 
 
   useEffect(() => {
-
     const allCgt = async () => {
       try {
         const data = await allPrompts();
         const ctgData = data?.data;
+        const firstCtg = ctgData[0]._id
         setCtg(ctgData)
+        setInput({
+          ...input,
+          user_id : user.id,
+          prompt_id : firstCtg,
+        })
       } catch (error) {
         
       }
     }
     allCgt()
-  }, [])
+  },[user])
 
   const inputHandel = (e) => {
     setInput({
@@ -55,17 +60,16 @@ function Create() {
     e.preventDefault()
     try {
       const data = new FormData();
-      console.log(file)
       data.append("image", file)
       data.append("data", JSON.stringify(input))
 
       const res = await createCharacter(data)
       toastMessage(res)
-      // setInput({
-      //   name: "",
-      //   username: "",
-      //   prompt_topic: ""
-      // })
+      setInput({
+        name: "",
+        username: "",
+        prompt_topic: ""
+      })
     } catch (error) {
       console.log(error)
     }

@@ -19,6 +19,7 @@ import Account from './pages/Account'
 import Settings from './pages/Settings'
 import Community from './pages/Community'
 import Chat from './pages/Chat'
+import Plan from './pages/Plan'
 
 // admin pages
 import IsAdLogin from './pages/admin/IsAdLogin'
@@ -56,6 +57,7 @@ function App() {
             <Route path='/settings' element={<Settings />} />
             <Route path='/account' element={<Account />} />
             <Route path='/community' element={<Community />} />
+            <Route path='/plan' element={<Plan />} />
           </Route>
           <Route path='/chat/:id' element={<Chat />} />
         </Route>

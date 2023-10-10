@@ -14,7 +14,7 @@ function MobileSingleCharacter({persion}) {
                     <div className='flex flex-col flex-1'>
                         <div className='flex gap-2 items-center'>
                             <h3 className='text-lg hcol capitalize'>{persion.name}</h3>
-                            <p className='text-xs italic pcol'>@{persion.creator}</p>
+                            <p className='text-xs italic pcol'>@{persion.username}</p>
                         </div>
                         <div className='flex justify-between items-center'>
                             <p className='pcol text-base font-normal'>{persion?.prompt_topic}</p>

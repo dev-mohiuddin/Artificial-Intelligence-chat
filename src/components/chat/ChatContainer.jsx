@@ -1,10 +1,10 @@
 // import teacher from '../../assets/images/characterimg/teacher.png'
 import { baseUrl } from '../../api/lib/helper'
 
-function ChatContainer({ singleBot, user, chats }) {
+function ChatContainer({messageEl, singleBot, user, chats }) {
 
   return (
-    <div className='h-[calc(100vh-56px)] md:h-[calc(100vh-64px)] mb-14 md:mb-16 py-3 overflow-y-scroll scroll'>
+    <div ref={messageEl} className='h-[calc(100vh-56px)] md:h-[calc(100vh-64px)] mb-14 md:mb-16 py-3 overflow-y-scroll scroll'>
 
       {
         chats.map((chat, val) => (
