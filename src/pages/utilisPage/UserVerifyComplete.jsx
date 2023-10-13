@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { toastMessage } from "../../toast/toastMessage"
@@ -10,6 +10,7 @@ function UserVerifyComplete() {
 
     const navigate = useNavigate()
     const {url} = useParams()
+    const [message, setMessage] = useState("")
 
     useEffect(()=>{
         getRes(url)
@@ -18,6 +19,7 @@ function UserVerifyComplete() {
     const getRes = async(d)=>{
         const data = await verifyUser(d)
         if(data.status === true){
+            setMessage(data.message)
             const toast = {
                 status : true,
                 message : "User successfully verified. Please Login"
@@ -25,14 +27,17 @@ function UserVerifyComplete() {
             toastMessage(toast);
         }else{
             toastMessage(data);
+            setMessage("Invalid Token")
         }
         data.status? navigate("/home") : "";
     }
 
+    console.log(message)
+
   return (
     <div className='w-full bg-slate-100'>
         <div className='container h-screen flex justify-center items-center'>
-            <h1 className='text-5xl font-bold'>Verifying</h1>
+            <h1 className='text-2xl font-bold'>{message}</h1>
         </div>
     </div>
   )

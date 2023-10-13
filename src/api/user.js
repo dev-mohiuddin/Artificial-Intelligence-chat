@@ -1,9 +1,9 @@
 
 
 import axios from 'axios'
-
-
 import { baseUrl } from './lib/helper'
+
+const token = window.localStorage.getItem("userInfo")
 
 export const userCheck = async(checkUserData)=>{
     try {
@@ -68,5 +68,20 @@ export const updatePassword = async(passData)=>{
         return data
     } catch (error) {
         return error.response.data
+    }
+}
+
+
+export const allUsers = async()=>{
+    try {
+        const {data} = await axios.get(`${baseUrl}/api/v1/user/all`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+
+        return data
+    } catch (error) {
+        console.log(error)
     }
 }

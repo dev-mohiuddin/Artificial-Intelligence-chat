@@ -1,5 +1,6 @@
 
 
+import DataTable from "react-data-table-component"
 import { useState, useEffect } from "react"
 import { useNavigate} from 'react-router-dom'
 import { AiOutlineDelete } from 'react-icons/ai'
@@ -29,28 +30,46 @@ function AllPrompts() {
     promptData()
   }, [])
 
-  const openModal = (singlePrompt)=>{
+  const openModal = (row)=>{
 
     setModal({
       status : true,
-      promptName : singlePrompt.name,
-      id : singlePrompt._id
+      promptName : row.name,
+      id : row._id
     })
   }
+
+  const columns = [
+    {
+      name : "Id",
+      selector: (row)=>(
+        1
+      ) ,
+    },
+    {
+      name : "Name",
+      selector : (row)=>row.name,
+    },
+    {
+      name : "Action",
+      cell : (row)=>(
+        <span onClick={()=> openModal(row) } 
+        className='text-red-500'><AiOutlineDelete size={20} /> </span>
+      )
+    }
+  ]
 
   return (
     <div className="w-full" >
       {modal.status && <Modal modal={modal} setModal={setModal} />}
-      <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
-        {
-          prompts ? prompts?.map((singlePrompt, val) => (
-            <div key={val} className="relative flex flex-col group justify-center items-center gap-5 p-4 rounded-md bg-slate-50 shadow hover:scale-105 duration-300">
-              <span onClick={()=> openModal(singlePrompt) } className="absolute cursor-pointer text-red-400 hidden group-hover:flex duration-300 right-2 top-2"><AiOutlineDelete /></span>
-              <h1 className="text-2xl font-bold text-gray-700">{singlePrompt.name}</h1>
-            </div>
-          )):
-          <div>No Prompt Found </div>
-        }
+      <div>
+        <h1 className="text-lg font-semibold text-center">All prompt list</h1>
+      </div>
+      <div>
+        <DataTable
+        columns={columns}
+        data={prompts}
+       />
       </div>
     </div>
   )

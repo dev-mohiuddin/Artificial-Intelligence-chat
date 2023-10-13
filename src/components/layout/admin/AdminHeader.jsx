@@ -21,7 +21,7 @@ function AdminHeader() {
           <span className='text-lg text-gray-100 cursor-pointer'><FaBarsStaggered /></span>
           <span className='text-lg text-gray-50 cursor-pointer'><BsSearch /></span>
           <Link to='/'>
-            <span className='text-xl text-gray-50 cursor-pointer'><PiUserSwitch /></span>
+            <span title='switch to user' className='text-xl text-gray-50 cursor-pointer'><PiUserSwitch /></span>
           </Link>
         </div>
         <div className='flex items-center gap-3 cursor-pointer'>

@@ -1,5 +1,6 @@
 import { FiSearch } from 'react-icons/fi'
 import { BsMoonStars, BsSun } from 'react-icons/bs'
+import { PiUserSwitch } from 'react-icons/pi'
 import { BiMenu } from 'react-icons/bi'
 import { TbSettingsDollar } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
@@ -44,6 +45,11 @@ function Header({ dark, setDark }) {
                 <span className='flex items-center hcol dark:text-black gap-1'>Premium<TbSettingsDollar size={15} /></span>
               </div>
             </Link>
+            {
+              user.role === "admin" ?<Link to="/admin">
+              <span title='switch to admin' className='hcol'><PiUserSwitch size={22} /></span>
+            </Link> : ""
+            }
             <div className="flex gap-5 items-center">
               <Link title={user.name} className='overflow-hidden h-8 w-8 rounded-full' to="/account">
                 <img className='object-cover h-full w-full hover:scale-105 duration-300' src={messi} alt="avater" />

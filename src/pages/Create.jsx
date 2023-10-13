@@ -107,7 +107,7 @@ function Create() {
             <h1 className='hcol text-base'>Character Topic</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">You name the subcategory according to the category.</label>
-              <input onChange={inputHandel} value={input.prompt_topic} name="prompt_topic" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
+              <input onChange={inputHandel} name="prompt_topic" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
             </div>
           </div>
 
@@ -115,7 +115,7 @@ function Create() {
             <h1 className='hcol text-base'>Character name</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Name your character according to the category.</label>
-              <input onChange={inputHandel} value={input.name} name="name" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
+              <input onChange={inputHandel}  name="name" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
             </div>
           </div>
 
@@ -123,7 +123,7 @@ function Create() {
             <h1 className='hcol text-base'>Character username</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Enter a unique username.</label>
-              <input onChange={inputHandel} value={input.username} name="username" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
+              <input onChange={inputHandel}  name="username" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
             </div>
           </div>
 

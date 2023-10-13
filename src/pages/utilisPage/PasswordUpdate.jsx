@@ -1,33 +1,33 @@
 
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-
+import { Link } from "react-router-dom"
 import { toastMessage } from "../../toast/toastMessage"
 import { updatePassword } from "../../api/user"
 
 function PasswordUpdate() {
 
-    const {url} = useParams()
+    const { url } = useParams()
     const [data, setData] = useState({
-        url : "",
-        password : ""
+        url: "",
+        password: ""
     })
 
-    const inputHandel = (e)=>{
+    const inputHandel = (e) => {
         setData({
             ...data,
             [e.target.name]: e.target.value
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setData({
             ...data,
-            url : url,
+            url: url,
         })
-    },[url])
-    console.log(data)
-    const updatePass = async(e)=>{
+    }, [url])
+
+    const updatePass = async (e) => {
         e.preventDefault()
 
         const res = await updatePassword(data)
@@ -36,12 +36,15 @@ function PasswordUpdate() {
     }
 
     return (
-        <div className='w-full bg-slate-100'>
-            <div className='container h-screen flex justify-center items-center'>
-                <div className='w-[300px] bg-slate-200 rounded-md px-3 py-5'>
-                    <form onSubmit={updatePass} className='flex flex-col gap-3' action="">
+        <div className='w-full bg-slate-50'>
+            <div className='container h-screen flex flex-col gap-8 justify-center items-center'>
+                <Link to="/">
+                    <h1 className='text-xl hcol inline-block text-gray-700 cursor-pointer md:text-2xl md:font-bold '>Collaborative Dynamics</h1>
+                </Link>
+                <div className='w-[300px] bg-white shadow-2xl shadow-blue-200 px-3 py-5'>
+                    <form onSubmit={updatePass} className='flex flex-col gap-5' action="">
                         <div className='flex flex-col gap-2'>
-                            <label htmlFor="">Password</label>
+                            <label className="text-base font-semibold text-gray-700" htmlFor="">New Password</label>
                             <input onChange={inputHandel} value={data.password} className='bg-transparent outline-0 h-10 w-full rounded-md border border-blue-500 px-3' type="password" name="password" placeholder='New password' required />
                         </div>
                         <div className='flex'>

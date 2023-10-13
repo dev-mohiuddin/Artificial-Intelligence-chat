@@ -30,7 +30,8 @@ function CreatePrompt() {
 
   return (
     <div className='w-full'>
-      <div>
+      <div><h1 className="text-lg font-semibold text-center">Create Prompt</h1></div>
+      <div className="mt-4">
         <form onSubmit={createPrompt} className='flex flex-col gap-4' >
           <div className='flex flex-col gap-2'>
             <label className='text-base text-gray-700' htmlFor="">Prompt Name</label>
