@@ -39,7 +39,7 @@ function Create() {
       }
     }
     allCgt()
-  },[user])
+  },[user.id])
 
   const inputHandel = (e) => {
     setInput({
@@ -74,6 +74,8 @@ function Create() {
       console.log(error)
     }
   }
+
+  console.log(input)
 
   return (
     <div className='w-full py-2 md:py-4 h-full overflow-y-auto scroll'>

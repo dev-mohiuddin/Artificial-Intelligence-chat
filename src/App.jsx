@@ -55,11 +55,12 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/create' element={<Create />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/account' element={<Account />} />
+     
             <Route path='/community' element={<Community />} />
             <Route path='/plan' element={<Plan />} />
           </Route>
           <Route path='/chat/:id' element={<Chat />} />
+          <Route path='/account' element={<Account />} />
         </Route>
 
         {/* admin route */}
