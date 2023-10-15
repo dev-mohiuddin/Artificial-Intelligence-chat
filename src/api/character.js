@@ -10,7 +10,7 @@ export const createCharacter = async (characterData) => {
         const { data } = await axios.post(`${baseUrl}/api/v1/character/create`, characterData, {
             headers: {
                 'Authorization': `${token}`,
-                'Content-Type' : 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         })
 
@@ -52,15 +52,31 @@ export const singleCharacter = async (id) => {
     }
 }
 
-export const characterReplay = async(userInput) => {
+export const characterReplay = async (userInput) => {
     try {
         const { data } = await axios.post(`${baseUrl}/api/v1/bot/reply`, userInput, {
             headers: {
                 'Authorization': `${token}`
             }
         })
-        
+
         return data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
+export const myCharacters = async (userId) => {
+    try {
+
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/my-character/${userId}`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+
+        return data
+
     } catch (error) {
         return error.response.data
     }

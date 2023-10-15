@@ -2,26 +2,31 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BiMessageRounded } from 'react-icons/bi'
-import { AiFillEdit, AiOutlineSetting } from 'react-icons/ai'
+import { AiFillEdit } from 'react-icons/ai'
 import { BsLightbulb } from 'react-icons/bs'
 import { MdOutlineArrowBackIosNew, MdOutlineSubscriptions, MdOutlinePriceChange, MdOutlinePrivacyTip } from 'react-icons/md'
 import teacher from '../assets/images/characterimg/teacher.png'
-import messi from "../assets/images/characterimg/messi.png"
-import robot from '../assets/images/characterimg/robot.png'
-import poli from '../assets/images/characterimg/mark.png'
 import Sidebar from "../components/layout/frontend/Sidebar"
-
+import MyCharacterEl from '../components/account/myCharacterEl'
+import { myCharacters } from '../api/character'
 import useAuth from '../Hooks/useAuth'
 
 function Account() {
 
-  const [user, setUser] = useState('')
+  const user = useAuth()
+  const [characters, setCharacters] = useState([])
 
-  useEffect(() => {
-    const userData = useAuth()
-    setUser(userData)
-  }, [])
+  useEffect(()=>{
+    const myCh = async()=>{
+      try {
+        const {myCharacter} = await myCharacters(user.id)
+        setCharacters(myCharacter)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    myCh();
+  },[])
 
   const navigate = useNavigate()
 
@@ -46,7 +51,7 @@ function Account() {
             <div className='flex justify-evenly items-center py-5 border border-b-gray-400 dark:border-b-gray-600  border-x-0 border-t-0'>
               <h2 className='hcol text-base font-medium'>Following 20</h2>
               <h2 className='hcol text-base font-medium'>Followers 10</h2>
-              <h2 className='hcol text-base font-medium'>Your Bot 5</h2>
+              <h2 className='hcol text-base font-medium'>Your Bot {characters?.length}</h2>
             </div>
 
 
@@ -74,60 +79,11 @@ function Account() {
             <div className='flex flex-col gap-3 py-5 mb-12 md:mb-0'>
               <h1 className='text-center text-base font-medium pcol'>My Character</h1>
 
-              <div className='flex justify-between items-center dark:border-gray-800  border p-2'>
-                <div className='flex gap-2'>
-                  <div className='w-12 h-12 rounded-full overflow-hidden'>
-                    <img className='w-full h-full object-cover' src={messi} alt="character" />
-                  </div>
-                  <div className='flex flex-col'>
-                    <div className='flex gap-2 items-center'>
-                      <h3 className='text-base font-semibold hcol'>Messi</h3>
-                      <span className='pcol mt-1 flex items-center text-xs'><BiMessageRounded size={12} /> 0</span>
-                    </div>
-                    <p className='text-base pcol'>Hi I am Footballar</p>
-                  </div>
-                </div>
-                <div>
-                  <span className='text-xl md:text-2xl pcol'><AiOutlineSetting /></span>
-                </div>
-              </div>
-
-              <div className='flex justify-between items-center dark:border-gray-800  border p-2'>
-                <div className='flex gap-2'>
-                  <div className='w-12 h-12 rounded-full overflow-hidden'>
-                    <img className='w-full h-full object-cover' src={robot} alt="character" />
-                  </div>
-                  <div className='flex flex-col'>
-                    <div className='flex gap-2 items-center'>
-                      <h3 className='text-base font-semibold hcol'>Robot</h3>
-                      <span className='pcol mt-1 flex items-center text-xs'><BiMessageRounded size={12} /> 0</span>
-                    </div>
-                    <p className='text-base pcol'>Hi I am Robot</p>
-                  </div>
-                </div>
-                <div>
-                  <span className='text-xl md:text-2xl pcol'><AiOutlineSetting /></span>
-                </div>
-              </div>
-
-              <div className='flex justify-between items-center dark:border-gray-800   border p-2'>
-                <div className='flex gap-2'>
-                  <div className='w-12 h-12 rounded-full overflow-hidden'>
-                    <img className='w-full h-full object-cover' src={poli} alt="character" />
-                  </div>
-                  <div className='flex flex-col'>
-                    <div className='flex gap-2 items-center'>
-                      <h3 className='text-base font-semibold hcol'>Politic</h3>
-                      <span className='pcol mt-1 flex items-center text-xs'><BiMessageRounded size={12} /> 0</span>
-                    </div>
-                    <p className='text-base pcol'>Hi I am Politicion</p>
-                  </div>
-                </div>
-                <div>
-                  <span className='text-xl md:text-2xl pcol'><AiOutlineSetting /></span>
-                </div>
-              </div>
-
+              {
+                characters && characters.map((charData)=>(
+                  <MyCharacterEl key={charData._id} charData={charData} />
+                ))
+              }
             </div>
 
 

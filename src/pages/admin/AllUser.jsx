@@ -63,9 +63,6 @@ function AllUser() {
   return (
     <div className="w-full">
       <div>
-        <div><h1 className="text-lg font-semibold text-center ">All user list</h1></div>
-      </div>
-      <div>
         <DataTable
           columns={columns}
           data={filter}

@@ -63,9 +63,6 @@ function AllPrompts() {
     <div className="w-full" >
       {modal.status && <Modal modal={modal} setModal={setModal} />}
       <div>
-        <h1 className="text-lg font-semibold text-center">All prompt list</h1>
-      </div>
-      <div>
         <DataTable
         columns={columns}
         data={prompts}

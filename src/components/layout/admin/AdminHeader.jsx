@@ -17,7 +17,7 @@ function AdminHeader() {
     <div className='w-full bg-blue-500'>
       <div className='container h-12 flex justify-between items-center'>
         <div className='flex items-center gap-8'>
-          <h1 className='text-xl font-bold uppercase text-gray-100 cursor-pointer'>Character.ai</h1>
+          <h1 className='text-xl font-bold uppercase text-gray-100 cursor-pointer'>Collaborative Dynamics</h1>
           <span className='text-lg text-gray-100 cursor-pointer'><FaBarsStaggered /></span>
           <span className='text-lg text-gray-50 cursor-pointer'><BsSearch /></span>
           <Link to='/'>

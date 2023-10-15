@@ -2,33 +2,35 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
+import useAuth from '../../Hooks/useAuth'
 import MobileSingleCharacter from '../utils/MobileSingleCharacter'
 import SingleCharacter from '../utils/SingleCharacter'
 import { allCharacter } from '../../api/character'
 
 function Character() {
 
+    const user = useAuth()
     const [characters, setCharacters] = useState([]);
 
     useEffect(() => {
         async function chData(){
             try {
-                const res = await allCharacter();
-                const data = res.character ;
-                setCharacters(data)
+                const {character} = await allCharacter();
+                setCharacters(character)
             } catch (error) {
             }
         }
         chData()
     }, [])
 
+
+
     return (
         <div className=" border-0 md:border border-x-transparent border-t-transparent border-b-gray-400">
             <div className='flex h-10 justify-between items-center'>
-                <select className='focus:outline-0 px-2 py-1 rounded-md dark:bg-slate-800 bg-slate-100 pcol' name="" id="">
-                    <option value="admin">Pre-bulid Bots</option>
-                    <option value="public">Public Bots</option>
-                    <option className='' value="me">My Bots</option>
+                <select  className='focus:outline-0 px-2 py-1 rounded-md dark:bg-slate-800 bg-slate-100 pcol' name="" id="">
+                    <option value="">Public Bots</option>
+                    <option className='' value={user.id}>My Bots</option>
                 </select>
                 <div className='hidden md:flex text-sm text-blue-500 hover:underline'>
                     <Link>See all Bots</Link>

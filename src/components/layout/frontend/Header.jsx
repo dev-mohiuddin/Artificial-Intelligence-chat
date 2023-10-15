@@ -8,6 +8,7 @@ import { useState } from 'react'
 import messi from '../../../assets/images/characterimg/messi.png'
 import useAuth from '../../../Hooks/useAuth'
 import MobileMenu from './MobileMenu'
+import mdlightlogo from "../../../assets/images/logo/mdlightlogo.png"
 
 function Header({ dark, setDark }) {
 
@@ -21,11 +22,12 @@ function Header({ dark, setDark }) {
       <div className="container h-12 md:border md:border-x-0 md:border-t-0 border-b-gray-400 dark:border-b-gray-600 flex items-center justify-between">
         <div className='w-72'>
           <Link to="/">
-            <h1 className='text-xl hcol inline-block cursor-pointer md:text-2xl md:font-bold '>Collaborative Dynamics</h1>
+            {/* <h1 className='text-xl hcol inline-block cursor-pointer md:text-2xl md:font-bold '>Collaborative Dynamics</h1> */}
+            <img className='h-9' src={mdlightlogo} alt="logo" />
           </Link>
         </div>
         <div className="flex flex-1 justify-end gap-2 md:gap-5">
-          <div className='relative flex items-center'>
+          <div className='relative md:flex items-center hidden'>
             <input className='h-8 outline-none px-3 w-48 md:w-72 rounded-full md:rounded-md border bg-slate-100 border-gray-400 dark:border-gray-600 focus:border-blue-300 pcol dark:bg-gray-900' type="text" name="" id="" />
             <span className='text-xl absolute right-0 bg-slate-100 dark:bg-gray-900 h-full w-9 border border-gray-400 dark:border-gray-600 flex justify-center items-center rounded-r-full md:rounded-r-md overflow-hidden hcol cursor-pointer'><FiSearch /></span>
           </div>
