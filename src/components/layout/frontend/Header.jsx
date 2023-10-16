@@ -8,7 +8,8 @@ import { useState } from 'react'
 import messi from '../../../assets/images/characterimg/messi.png'
 import useAuth from '../../../Hooks/useAuth'
 import MobileMenu from './MobileMenu'
-import mdlightlogo from "../../../assets/images/logo/mdlightlogo.png"
+import lightlogo from "../../../assets/images/logo/lightlogo.png"
+import darklogo from '../../../assets/images/logo/darklogo.png'
 
 function Header({ dark, setDark }) {
 
@@ -23,7 +24,8 @@ function Header({ dark, setDark }) {
         <div className='w-72'>
           <Link to="/">
             {/* <h1 className='text-xl hcol inline-block cursor-pointer md:text-2xl md:font-bold '>Collaborative Dynamics</h1> */}
-            <img className='h-9' src={mdlightlogo} alt="logo" />
+            <img className=' dark:hidden w-72 md:w-full md:h-9' src={lightlogo} alt="logo" />
+            <img className=' dark:flex hidden w-72 md:w-full md:h-11' src={darklogo} alt="logo" />
           </Link>
         </div>
         <div className="flex flex-1 justify-end gap-2 md:gap-5">
@@ -32,7 +34,7 @@ function Header({ dark, setDark }) {
             <span className='text-xl absolute right-0 bg-slate-100 dark:bg-gray-900 h-full w-9 border border-gray-400 dark:border-gray-600 flex justify-center items-center rounded-r-full md:rounded-r-md overflow-hidden hcol cursor-pointer'><FiSearch /></span>
           </div>
           <div className='flex items-center md:hidden'>
-            <span onClick={() => setMobileMenu(true)} className='hcol'><BiMenu size={25} /></span>
+            <span onClick={() => setMobileMenu(true)} className='hcol -mt-3'><BiMenu size={25} /></span>
           </div>
           {
             mobileMenu && <MobileMenu setMobileMenu={setMobileMenu} />

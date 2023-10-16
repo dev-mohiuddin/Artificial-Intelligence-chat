@@ -2,7 +2,7 @@
 
 import Category from "../components/home/Category"
 import Character from "../components/home/Character"
-
+import PreCharacter from '../components/home/PreCharacter'
 
 function Home() {
   return (
@@ -10,6 +10,7 @@ function Home() {
       <div className="container">
         <Category />
         <Character />
+        <PreCharacter />
       </div>
     </div>
   )

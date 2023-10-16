@@ -14,6 +14,7 @@ import useAuth from '../Hooks/useAuth'
 function Account() {
 
   const user = useAuth()
+  const navigate = useNavigate()
   const [characters, setCharacters] = useState([])
 
   useEffect(()=>{
@@ -28,7 +29,7 @@ function Account() {
     myCh();
   },[])
 
-  const navigate = useNavigate()
+
 
   return (
     <div className='w-full main-bg h-full overflow-y-auto scroll'>

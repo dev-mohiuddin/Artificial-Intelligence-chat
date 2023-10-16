@@ -74,7 +74,6 @@ function Create() {
       console.log(error)
     }
   }
-
   console.log(input)
 
   return (
