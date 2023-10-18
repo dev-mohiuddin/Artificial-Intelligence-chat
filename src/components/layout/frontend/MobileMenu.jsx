@@ -30,7 +30,7 @@ function MobileMenu({ setMobileMenu }) {
           </div>
           <Link onClick={() => setMobileMenu(false)} to='/plan'>
             <div className=' py-1 flex items-center cursor-pointer rounded-md'>
-              <span className='flex items-center hcol dark:text-black gap-2'><TbSettingsDollar size={22} />Premium</span>
+              <span className='flex items-center hcol gap-2'><TbSettingsDollar size={22} />Premium</span>
             </div>
           </Link>
           {

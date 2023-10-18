@@ -26,11 +26,15 @@ function Character() {
 
     return (
         <div className=" border-0 md:border border-x-transparent border-t-transparent border-b-gray-400 dark:border-b-gray-600">
-            <div className='flex h-10 justify-between items-center'>
-                <select className='focus:outline-0 px-2 py-1 rounded-md dark:bg-slate-800 bg-slate-100 pcol' name="" id="">
-                    <option >Public Bots</option>
-                    <option >My Bots</option>
-                </select>
+            <div className='flex justify-between items-center'>
+                <div className='bg-slate-200 dark:bg-slate-900 rounded flex justify-between items-center'>
+                    <div className='cursor-pointer dark:bg-slate-800 shadow-md bg-white px-2 py-0.5 '>
+                        <span className='pcol text-sm'>Public</span>
+                    </div>
+                    <div className='cursor-pointer px-2 py-0.5'>
+                        <span className='pcol text-sm '>My Bots</span>
+                    </div>
+                </div>
                 <div className='hidden md:flex text-sm text-blue-500 hover:underline'>
                     <Link>See all Bots</Link>
                 </div>
