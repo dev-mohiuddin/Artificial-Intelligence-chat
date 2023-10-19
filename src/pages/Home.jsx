@@ -2,7 +2,7 @@
 
 import Category from "../components/home/Category"
 import Character from "../components/home/Character"
-import PreCharacter from '../components/home/PreCharacter'
+import LatestCharacter from '../components/home/LatestCharacter.jsx'
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <div className="container">
         <Category />
         <Character />
-        <PreCharacter />
+        <LatestCharacter />
       </div>
     </div>
   )

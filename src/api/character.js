@@ -37,6 +37,21 @@ export const allCharacter = async () => {
     }
 }
 
+export const trendCharacter = async () => {
+    try {
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/trending`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+
+     return data
+
+    } catch (error) {
+        return error.response.data;
+    }
+}
+
 export const singleCharacter = async (id) => {
 
     try {
@@ -70,6 +85,22 @@ export const myCharacters = async (userId) => {
     try {
 
         const { data } = await axios.get(`${baseUrl}/api/v1/character/my-character/${userId}`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+
+        return data
+
+    } catch (error) {
+        return error.response.data
+    }
+}
+
+export const categoryCharacter = async (ctgId) => {
+    try {
+        console.log(ctgId)
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/cat/${ctgId}`, {
             headers: {
                 'Authorization': `${token}`
             }

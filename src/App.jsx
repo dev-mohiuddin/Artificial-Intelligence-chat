@@ -9,11 +9,13 @@ import UserVerifyComplete from './pages/utilisPage/UserVerifyComplete'
 import UserVerify from './pages/utilisPage/UserVerify'
 import ForgotPass from './pages/utilisPage/ForgotPass'
 import PasswordUpdate from './pages/utilisPage/PasswordUpdate'
+import ReVerify from './pages/utilisPage/ReVerify'
 
 // client pages
 import Frontend from './components/layout/frontend/Frontend'
 import IsLogin from './pages/utilisPage/IsLogin'
 import Home from './pages/Home'
+import PromptCategory from './pages/PromptCategory'
 import Create from './pages/Create'
 import Account from './pages/Account'
 import Settings from './pages/Settings'
@@ -45,6 +47,7 @@ function App() {
         {/* public Route */}
         <Route path='/home' element={<PublicPage />} />
         <Route path='/verify' element={<UserVerify />} />
+        <Route path='/re-verify' element={<ReVerify />} />
         <Route path='/verify/:url' element={<UserVerifyComplete />} />
         <Route path='/forgot-password' element={<ForgotPass />} />
         <Route path='/forgot-password/:url' element={<PasswordUpdate />} />
@@ -55,7 +58,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/create' element={<Create />} />
             <Route path='/settings' element={<Settings />} />
-     
+            <Route path='/category/:id' element={<PromptCategory />} />
             <Route path='/community' element={<Community />} />
             <Route path='/plan' element={<Plan />} />
           </Route>

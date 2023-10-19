@@ -36,12 +36,22 @@ export const verifyUser = async(verifyData)=>{
     }
 }
 
+export const reVerify = async(verifyEmail)=>{
+    try {
+
+    const {data} = await axios.post(`${baseUrl}/api/v1/extra//verify/mail/send`, verifyEmail, {headers:{"Content-Type" : "application/json"}})
+    return data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
 export const userLogin = async(loginData)=>{
     try {
         
         const {data} = await axios.post(`${baseUrl}/api/v1/auth/login`, loginData, {headers:{"Content-Type" : "application/json"}})
-        
-        if(data.status){
+
+        if(data.status && data.user_verifed){
             localStorage.setItem("userInfo", data.token.token )
         }
         return data ;

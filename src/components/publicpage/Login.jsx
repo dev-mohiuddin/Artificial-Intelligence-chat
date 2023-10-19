@@ -27,13 +27,17 @@ function Login({ setSignUpModal, setLoginModal }) {
         e.preventDefault()
         try {
             const data = await userLogin(user)
-            toastMessage(data)
+            if(data.status && data.user_verifed){
+              toastMessage(data)
+            }
+            if( data.user_verifed == false ){
+                const email = data.user_data.email;
+                navigate("/re-verify", { state: {email} })
+            }
             if (data.status === true && data.role === "admin") {
                 navigate("/admin")
             } else if (data.status === true && data.role === "user") {
                 navigate("/")
-            } else {
-                console.log("error")
             }
             setUser({
                 username: "",

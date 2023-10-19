@@ -1,6 +1,7 @@
 
 
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { GiOctoman } from 'react-icons/gi'
 import { allPrompts } from '../api/prompt';
 import useAuth from '../Hooks/useAuth'
@@ -10,6 +11,7 @@ import { createCharacter } from '../api/character';
 function Create() {
 
   const user = useAuth()
+  const navigate = useNavigate();
   const [ctg, setCtg] = useState([]);
   const [file, setFile] = useState("");
   const [input, setInput] = useState({
@@ -65,16 +67,11 @@ function Create() {
 
       const res = await createCharacter(data)
       toastMessage(res)
-      setInput({
-        name: "",
-        username: "",
-        prompt_topic: ""
-      })
+      navigate("/")
     } catch (error) {
       console.log(error)
     }
   }
-  console.log(input)
 
   return (
     <div className='w-full py-2 md:py-4 h-full overflow-y-auto scroll'>

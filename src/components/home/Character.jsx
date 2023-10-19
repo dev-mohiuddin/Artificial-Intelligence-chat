@@ -5,33 +5,40 @@ import { useState, useEffect } from 'react'
 import useAuth from '../../Hooks/useAuth'
 import MobileSingleCharacter from '../utils/MobileSingleCharacter'
 import SingleCharacter from '../utils/SingleCharacter'
-import { allCharacter, myCharacters } from '../../api/character'
+import { myCharacters, trendCharacter } from '../../api/character'
 
 function Character() {
 
     const user = useAuth()
+    const [button, setButton] = useState(true)
     const [characters, setCharacters] = useState([]);
 
     useEffect(() => {
         async function chData() {
+            
             try {
-                const { character } = await allCharacter()
-                setCharacters(character)
+                if(button){
+                    const { character } = await trendCharacter()
+                    setCharacters(character)
+                }else{
+                    const {myCharacter} = await myCharacters(user.id)
+                    setCharacters(myCharacter);
+                }
             } catch (error) {
                 console.log(error)
             }
         }
         chData()
-    }, [])
+    }, [button, user.id])
 
     return (
         <div className=" border-0 md:border border-x-transparent border-t-transparent border-b-gray-400 dark:border-b-gray-600">
             <div className='flex justify-between items-center'>
-                <div className='bg-slate-200 dark:bg-slate-900 rounded flex justify-between items-center'>
-                    <div className='cursor-pointer dark:bg-slate-800 shadow-md bg-white px-2 py-0.5 '>
-                        <span className='pcol text-sm'>Public</span>
+                <div onClick={()=>setButton(!button)} className='bg-slate-200 dark:bg-slate-900 rounded. flex justify-between items-center rounded-full duration-500'>
+                    <div className={`${button ? "dark:bg-slate-700 shadow bg-white rounded-full" : "" } cursor-pointer  px-2 py-0.5 `}>
+                        <span className='pcol text-sm'>Trending</span>
                     </div>
-                    <div className='cursor-pointer px-2 py-0.5'>
+                    <div onClick={()=>setButton(!button)} className={`${ button ? "" : "dark:bg-slate-700 shadow bg-white rounded-full" } cursor-pointer  px-2 py-0.5 duration-500 `}>
                         <span className='pcol text-sm '>My Bots</span>
                     </div>
                 </div>
