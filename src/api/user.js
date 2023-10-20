@@ -104,7 +104,23 @@ export const userProfile = async (photo) => {
                 'Content-Type': 'multipart/form-data'
             }
         })
+
         return data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
+export const getSingleUser = async (userId) => {
+    try {
+        const { data } = await axios.get(`${baseUrl}/api/v1/user/single/${userId}`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+
+        return data
+
     } catch (error) {
         return error.response.data
     }

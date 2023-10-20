@@ -1,22 +1,24 @@
 
-import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FiEdit } from 'react-icons/fi'
 import { BsLightbulb, BsThreeDotsVertical } from 'react-icons/bs'
 import { MdOutlineArrowBackIosNew, MdOutlineSubscriptions, MdOutlinePriceChange, MdOutlinePrivacyTip, MdDone } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
-import teacher from '../assets/images/characterimg/teacher.png'
+import messi from '../assets/images/characterimg/messi.png'
 import Sidebar from "../components/layout/frontend/Sidebar"
 import MyCharacterEl from '../components/account/myCharacterEl'
+import { baseUrl } from '../api/lib/helper'
 import { myCharacters } from '../api/character'
-import { userProfile } from '../api/user'
+import { userProfile, getSingleUser } from '../api/user'
 import useAuth from '../Hooks/useAuth'
+import { toastMessage } from '../toast/toastMessage'
 
 function Account() {
 
   const user = useAuth()
   const navigate = useNavigate()
+  const [userData, setUserData] = useState('')
   const [characters, setCharacters] = useState([])
   const [file, setFile] = useState("")
 
@@ -32,6 +34,18 @@ function Account() {
     myCh();
   }, [])
 
+  useEffect(()=>{
+    const getUser = async()=>{
+      try {
+        const data = await getSingleUser(user.id)
+        setUserData(data.user);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUser()
+  },[])
+
   const fileHandel = (e) => {
 
     if (!e.target.files) {
@@ -43,10 +57,13 @@ function Account() {
   const upload = async()=>{
     const data = new FormData();
     data.append("image", file)
+    data.append("data", JSON.stringify({user_id : user.id}))
     const res = await userProfile(data);
-    console.log(res)
+    toastMessage(res)
     setFile("")
+    navigate("/")
   }
+  console.log(userData)
 
   return (
     <div className='w-full main-bg h-full overflow-y-auto scroll'>
@@ -59,7 +76,7 @@ function Account() {
             <div className='w-full flex justify-between items-start'>
               <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
               <div className='relative w-28 h-28 rounded-full border-4 border-gray-400 dark:border-gray-600'>
-                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={teacher} alt="user" />
+                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ baseUrl+''+userData?.image } alt="user" />
                 <span className='absolute flex justify-center items-center  bottom-0 -right-3'>
                   {
                     file ?
@@ -77,8 +94,8 @@ function Account() {
               <h2 className='hcol text-lg font-semibold'>{user?.name}</h2>
             </div>
             <div className='flex justify-evenly items-center py-5 border border-b-gray-400 dark:border-b-gray-600  border-x-0 border-t-0'>
-              <h2 className='hcol text-base font-medium'>Following 20</h2>
-              <h2 className='hcol text-base font-medium'>Followers 10</h2>
+              <h2 className='hcol text-base font-medium'>Following 0</h2>
+              <h2 className='hcol text-base font-medium'>Followers 0</h2>
               <h2 className='hcol text-base font-medium'>Your Bot {characters?.length}</h2>
             </div>
 

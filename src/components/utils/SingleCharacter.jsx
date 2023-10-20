@@ -18,7 +18,7 @@ function SingleCharacter({persion}) {
                     </div>
                     <div className='flex justify-between'>
                         <span className='text-sm italic font-semibold hcol'>@{persion?.username}</span>
-                        <span className='text-sm font-medium hcol flex items-center justify-center gap-1'> <BiMessageRounded /> {persion?.total_message}</span>
+                        <span className='text-sm font-medium hcol flex items-center justify-center'> <BiMessageRounded /> {persion?.total_message}</span>
                     </div>
                 </div>
             </Link>

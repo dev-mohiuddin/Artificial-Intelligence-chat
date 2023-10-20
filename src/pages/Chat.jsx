@@ -65,6 +65,7 @@ function Chat() {
       setChats([...chats, {user: user.id, message : inputData.userInput}])
       setInputData({...inputData, userInput : ""})
       const data = await characterReplay(inputData)
+      console.log(data.reply)
       setChats([...chats,
         {user : user.id , message : inputData.userInput},
         {user: id, message : data.reply}

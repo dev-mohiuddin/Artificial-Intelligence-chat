@@ -4,8 +4,9 @@ import { PiUserSwitch } from 'react-icons/pi'
 import { BiMenu } from 'react-icons/bi'
 import { TbSettingsDollar } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import messi from '../../../assets/images/characterimg/messi.png'
+import { useState, useEffect } from 'react'
+import { baseUrl } from '../../../api/lib/helper'
+import { getSingleUser } from '../../../api/user'
 import useAuth from '../../../Hooks/useAuth'
 import MobileMenu from './MobileMenu'
 import lightlogo from "../../../assets/images/logo/lightlogo.png"
@@ -13,10 +14,21 @@ import darklogo from '../../../assets/images/logo/darklogo.png'
 
 function Header({ dark, setDark }) {
 
-
-  const [mobileMenu, setMobileMenu] = useState(false);
-
   const user = useAuth();
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [userData, setUserData] = useState('')
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const data = await getSingleUser(user.id)
+        setUserData(data.user);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUser()
+  }, [])
 
   return (
     <div className='w-full glass bg-slate-50 md:bg-transparent dark:md:bg-none fixed z-50'>
@@ -50,13 +62,13 @@ function Header({ dark, setDark }) {
               </div>
             </Link>
             {
-              user.role === "admin" ?<Link to="/admin">
-              <span title='switch to admin' className='hcol'><PiUserSwitch size={22} /></span>
-            </Link> : ""
+              user.role === "admin" ? <Link to="/admin">
+                <span title='switch to admin' className='hcol'><PiUserSwitch size={22} /></span>
+              </Link> : ""
             }
             <div className="flex gap-5 items-center">
               <Link title={user.name} className='overflow-hidden h-8 w-8 rounded-full' to="/account">
-                <img className='object-cover h-full w-full hover:scale-105 duration-300' src={messi} alt="avater" />
+                <img className='object-cover h-full w-full hover:scale-105 duration-300' src={baseUrl+''+userData?.image} alt="avater" />
               </Link>
             </div>
           </div>

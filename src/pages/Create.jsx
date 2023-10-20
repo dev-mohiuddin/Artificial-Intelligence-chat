@@ -140,7 +140,7 @@ function Create() {
             <h1 className='hcol text-base'>Avatar</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Upload an image. jpg, png and jpeg only</label>
-              <input type="file" onChange={fileHandel} name="file" className='bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
+              <input type="file" onChange={fileHandel} name="file" className='placeholder:bg-red-600 bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
             </div>
           </div>
           <div className='space-y-2 mb-5'>

@@ -14,8 +14,8 @@ function PromptCategory() {
     useEffect(() => {
         const charData = async () => {
             try {
-                const data = await categoryCharacter(id)
-                console.log(data)
+                const {character} = await categoryCharacter(id)
+                setCharacters(character)
             } catch (error) {
                 console.log(error)
             }

@@ -38,6 +38,8 @@
 }
 
 
+
+
 @layer components {
     .container {
         @apply max-w-screen-xxl mx-auto px-3 md:px-8

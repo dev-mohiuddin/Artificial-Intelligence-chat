@@ -99,7 +99,7 @@ export const myCharacters = async (userId) => {
 
 export const categoryCharacter = async (ctgId) => {
     try {
-        console.log(ctgId)
+       
         const { data } = await axios.get(`${baseUrl}/api/v1/character/cat/${ctgId}`, {
             headers: {
                 'Authorization': `${token}`
