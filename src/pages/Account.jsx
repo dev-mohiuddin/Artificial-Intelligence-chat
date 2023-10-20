@@ -2,13 +2,15 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AiFillEdit } from 'react-icons/ai'
-import { BsLightbulb } from 'react-icons/bs'
-import { MdOutlineArrowBackIosNew, MdOutlineSubscriptions, MdOutlinePriceChange, MdOutlinePrivacyTip } from 'react-icons/md'
+import { FiEdit } from 'react-icons/fi'
+import { BsLightbulb, BsThreeDotsVertical } from 'react-icons/bs'
+import { MdOutlineArrowBackIosNew, MdOutlineSubscriptions, MdOutlinePriceChange, MdOutlinePrivacyTip, MdDone } from 'react-icons/md'
+import { RxCross2 } from 'react-icons/rx'
 import teacher from '../assets/images/characterimg/teacher.png'
 import Sidebar from "../components/layout/frontend/Sidebar"
 import MyCharacterEl from '../components/account/myCharacterEl'
 import { myCharacters } from '../api/character'
+import { userProfile } from '../api/user'
 import useAuth from '../Hooks/useAuth'
 
 function Account() {
@@ -16,20 +18,35 @@ function Account() {
   const user = useAuth()
   const navigate = useNavigate()
   const [characters, setCharacters] = useState([])
+  const [file, setFile] = useState("")
 
-  useEffect(()=>{
-    const myCh = async()=>{
+  useEffect(() => {
+    const myCh = async () => {
       try {
-        const {myCharacter} = await myCharacters(user.id)
+        const { myCharacter } = await myCharacters(user.id)
         setCharacters(myCharacter)
       } catch (error) {
         console.log(error)
       }
     }
     myCh();
-  },[])
+  }, [])
 
+  const fileHandel = (e) => {
 
+    if (!e.target.files) {
+      return;
+    }
+    setFile(e.target.files[0])
+  }
+
+  const upload = async()=>{
+    const data = new FormData();
+    data.append("image", file)
+    const res = await userProfile(data);
+    console.log(res)
+    setFile("")
+  }
 
   return (
     <div className='w-full main-bg h-full overflow-y-auto scroll'>
@@ -41,10 +58,20 @@ function Account() {
           <div className="max-w-3xl mx-auto flex flex-col ">
             <div className='w-full flex justify-between items-start'>
               <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
-              <div className='w-28 h-28 rounded-full overflow-hidden border-4 border-gray-400 dark:border-gray-600'>
-                <img className='w-full h-full object-cover' src={teacher} alt="user" />
+              <div className='relative w-28 h-28 rounded-full border-4 border-gray-400 dark:border-gray-600'>
+                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={teacher} alt="user" />
+                <span className='absolute flex justify-center items-center  bottom-0 -right-3'>
+                  {
+                    file ?
+                      <span onClick={()=>setFile("")} className='relative mr-2 text-red-500 cursor-pointer '><RxCross2 size={20} /></span> : <span className='flex justify-center items-center'>
+                        <input onChange={fileHandel} className='w-8 h-8 opacity-0 z-10' type="file" name='' />
+                        <span className='absolute pcol'><FiEdit size={18} /></span>
+                      </span>
+                  }
+                  <span onClick={upload} className={`${file ? "block" : "hidden"} absolute -right-4 cursor-pointer text-green-500 `} ><MdDone size={20} /> </span>
+                </span>
               </div>
-              <span className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><AiFillEdit /></span>
+              <span className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><BsThreeDotsVertical /></span>
             </div>
             <div className='flex justify-center items-center mt-2'>
               <h2 className='hcol text-lg font-semibold'>{user?.name}</h2>
@@ -81,7 +108,7 @@ function Account() {
               <h1 className='text-center text-base font-medium pcol'>My Character</h1>
 
               {
-                characters && characters.map((charData)=>(
+                characters && characters.map((charData) => (
                   <MyCharacterEl key={charData._id} charData={charData} />
                 ))
               }

@@ -5,65 +5,65 @@ import { baseUrl } from './lib/helper'
 
 const token = window.localStorage.getItem("userInfo")
 
-export const userCheck = async(checkUserData)=>{
+export const userCheck = async (checkUserData) => {
     try {
-        const {data} = await axios.post(`${baseUrl}/api/v1/user/validate`, {checkUserData})
+        const { data } = await axios.post(`${baseUrl}/api/v1/user/validate`, { checkUserData })
 
         return data
 
-    } catch (error) {
-        return error.response.data 
-    }
-}
-
-export const signUpUser = async (signInData)=>{
-    try {
-        const {data} = await axios.post(`${baseUrl}/api/v1/user/create`, signInData ,{headers:{"Content-Type" : "application/json"}});
-        return data
     } catch (error) {
         return error.response.data
     }
 }
 
-export const verifyUser = async(verifyData)=>{
-
+export const signUpUser = async (signInData) => {
     try {
-        const {data} = await axios.post(`${baseUrl}/api/v1/extra/mail/verify`, {url : verifyData}, {headers:{"Content-Type" : "application/json"}})
-
+        const { data } = await axios.post(`${baseUrl}/api/v1/user/create`, signInData, { headers: { "Content-Type": "application/json" } });
         return data
     } catch (error) {
         return error.response.data
     }
 }
 
-export const reVerify = async(verifyEmail)=>{
-    try {
+export const verifyUser = async (verifyData) => {
 
-    const {data} = await axios.post(`${baseUrl}/api/v1/extra//verify/mail/send`, verifyEmail, {headers:{"Content-Type" : "application/json"}})
-    return data
+    try {
+        const { data } = await axios.post(`${baseUrl}/api/v1/extra/mail/verify`, { url: verifyData }, { headers: { "Content-Type": "application/json" } })
+
+        return data
     } catch (error) {
         return error.response.data
     }
 }
 
-export const userLogin = async(loginData)=>{
+export const reVerify = async (verifyEmail) => {
     try {
-        
-        const {data} = await axios.post(`${baseUrl}/api/v1/auth/login`, loginData, {headers:{"Content-Type" : "application/json"}})
 
-        if(data.status && data.user_verifed){
-            localStorage.setItem("userInfo", data.token.token )
+        const { data } = await axios.post(`${baseUrl}/api/v1/extra//verify/mail/send`, verifyEmail, { headers: { "Content-Type": "application/json" } })
+        return data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
+export const userLogin = async (loginData) => {
+    try {
+
+        const { data } = await axios.post(`${baseUrl}/api/v1/auth/login`, loginData, { headers: { "Content-Type": "application/json" } })
+
+        if (data.status && data.user_verifed) {
+            localStorage.setItem("userInfo", data.token.token)
         }
-        return data ;
+        return data;
 
     } catch (error) {
-       return error.response.data;
+        return error.response.data;
     }
 }
 
-export const forgotPassword = async(emailData)=>{
+export const forgotPassword = async (emailData) => {
     try {
-        const {data} = await axios.post(`${baseUrl}/api/v1/extra/forget/password/request`,{email: emailData} )
+        const { data } = await axios.post(`${baseUrl}/api/v1/extra/forget/password/request`, { email: emailData })
 
         return data
     } catch (error) {
@@ -71,9 +71,9 @@ export const forgotPassword = async(emailData)=>{
     }
 }
 
-export const updatePassword = async(passData)=>{
+export const updatePassword = async (passData) => {
     try {
-        const {data} = await axios.post(`${baseUrl}/api/v1/extra/forget/password/update`, passData)
+        const { data } = await axios.post(`${baseUrl}/api/v1/extra/forget/password/update`, passData)
 
         return data
     } catch (error) {
@@ -82,9 +82,9 @@ export const updatePassword = async(passData)=>{
 }
 
 
-export const allUsers = async()=>{
+export const allUsers = async () => {
     try {
-        const {data} = await axios.get(`${baseUrl}/api/v1/user/all`, {
+        const { data } = await axios.get(`${baseUrl}/api/v1/user/all`, {
             headers: {
                 'Authorization': `${token}`
             }
@@ -92,6 +92,20 @@ export const allUsers = async()=>{
 
         return data
     } catch (error) {
-        console.log(error)
+        return error.response.data
+    }
+}
+
+export const userProfile = async (photo) => {
+    try {
+        const { data } = await axios.post(`${baseUrl}/api/v1/user/profile-photo`, photo, {
+            headers: {
+                'Authorization': `${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        return data
+    } catch (error) {
+        return error.response.data
     }
 }
