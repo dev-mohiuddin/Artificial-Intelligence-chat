@@ -5,9 +5,9 @@ import { FiEdit } from 'react-icons/fi'
 import { BsLightbulb, BsThreeDotsVertical } from 'react-icons/bs'
 import { MdOutlineArrowBackIosNew, MdOutlineSubscriptions, MdOutlinePriceChange, MdOutlinePrivacyTip, MdDone } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
-import messi from '../assets/images/characterimg/messi.png'
 import Sidebar from "../components/layout/frontend/Sidebar"
 import MyCharacterEl from '../components/account/myCharacterEl'
+import NoCharacter from '../components/utils/NoCharacter'
 import { baseUrl } from '../api/lib/helper'
 import { myCharacters } from '../api/character'
 import { userProfile, getSingleUser } from '../api/user'
@@ -34,8 +34,8 @@ function Account() {
     myCh();
   }, [])
 
-  useEffect(()=>{
-    const getUser = async()=>{
+  useEffect(() => {
+    const getUser = async () => {
       try {
         const data = await getSingleUser(user.id)
         setUserData(data.user);
@@ -44,7 +44,7 @@ function Account() {
       }
     }
     getUser()
-  },[])
+  }, [])
 
   const fileHandel = (e) => {
 
@@ -54,16 +54,15 @@ function Account() {
     setFile(e.target.files[0])
   }
 
-  const upload = async()=>{
+  const upload = async () => {
     const data = new FormData();
     data.append("image", file)
-    data.append("data", JSON.stringify({user_id : user.id}))
+    data.append("data", JSON.stringify({ user_id: user.id }))
     const res = await userProfile(data);
     toastMessage(res)
     setFile("")
     navigate("/")
   }
-  console.log(userData)
 
   return (
     <div className='w-full main-bg h-full overflow-y-auto scroll'>
@@ -76,11 +75,11 @@ function Account() {
             <div className='w-full flex justify-between items-start'>
               <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
               <div className='relative w-28 h-28 rounded-full border-4 border-gray-400 dark:border-gray-600'>
-                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ baseUrl+''+userData?.image } alt="user" />
+                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={baseUrl + '' + userData?.image} alt="user" />
                 <span className='absolute flex justify-center items-center  bottom-0 -right-3'>
                   {
                     file ?
-                      <span onClick={()=>setFile("")} className='relative mr-2 text-red-500 cursor-pointer '><RxCross2 size={20} /></span> : <span className='flex justify-center items-center'>
+                      <span onClick={() => setFile("")} className='relative mr-2 text-red-500 cursor-pointer '><RxCross2 size={20} /></span> : <span className='flex justify-center items-center'>
                         <input onChange={fileHandel} className='w-8 h-8 opacity-0 z-10' type="file" name='' />
                         <span className='absolute pcol'><FiEdit size={18} /></span>
                       </span>
@@ -125,9 +124,9 @@ function Account() {
               <h1 className='text-center text-base font-medium pcol'>My Character</h1>
 
               {
-                characters && characters.map((charData) => (
+                characters ? characters.map((charData) => (
                   <MyCharacterEl key={charData._id} charData={charData} />
-                ))
+                )) : <NoCharacter />
               }
             </div>
 

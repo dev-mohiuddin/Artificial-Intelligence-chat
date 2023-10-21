@@ -1,13 +1,15 @@
 
 import { Link } from 'react-router-dom'
 import { BiMessageRounded } from 'react-icons/bi'
-import { AiOutlineSetting } from 'react-icons/ai'
+import { AiOutlineEdit} from 'react-icons/ai'
+import {BsTrash3} from 'react-icons/bs'
 
 import { baseUrl } from '../../api/lib/helper'
+import { deleteCharacter } from '../../api/character'
 
 function MyCharacterEl({ charData }) {
-    return (
 
+    return (
         <div className='flex justify-between items-center dark:border-gray-800  border p-2'>
             <Link to={`/chat/${charData?._id}`} >
                 <div className='flex gap-2'>
@@ -23,8 +25,9 @@ function MyCharacterEl({ charData }) {
                     </div>
                 </div>
             </Link>
-            <div>
-                <span className='text-xl md:text-2xl pcol'><AiOutlineSetting /></span>
+            <div className='flex gap-2 items-center'>
+                <span className='text-lg cursor-pointer  pcol'><AiOutlineEdit /></span>
+                <span onClick={()=>deleteCharacter(charData._id)} className='text-sm cursor-pointer text-red-600'><BsTrash3 /></span>
             </div>
         </div>
     )

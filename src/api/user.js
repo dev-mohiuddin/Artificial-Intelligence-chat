@@ -50,14 +50,14 @@ export const userLogin = async (loginData) => {
     try {
 
         const { data } = await axios.post(`${baseUrl}/api/v1/auth/login`, loginData, { headers: { "Content-Type": "application/json" } })
-
+   
         if (data.status && data.user_verifed) {
             localStorage.setItem("userInfo", data.token.token)
         }
         return data;
 
     } catch (error) {
-        return error.response.data;
+        return error.response.data
     }
 }
 

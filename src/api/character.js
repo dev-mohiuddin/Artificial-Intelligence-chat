@@ -45,7 +45,7 @@ export const trendCharacter = async () => {
             }
         })
 
-     return data
+        return data
 
     } catch (error) {
         return error.response.data;
@@ -99,7 +99,7 @@ export const myCharacters = async (userId) => {
 
 export const categoryCharacter = async (ctgId) => {
     try {
-       
+
         const { data } = await axios.get(`${baseUrl}/api/v1/character/cat/${ctgId}`, {
             headers: {
                 'Authorization': `${token}`
@@ -109,6 +109,22 @@ export const categoryCharacter = async (ctgId) => {
         return data
 
     } catch (error) {
+        return error.response.data
+    }
+}
+
+export const deleteCharacter = async (charId) => {
+    try {
+
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/delete/${charId}`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        console.log(data)
+        // return data
+    } catch (error) {
+
         return error.response.data
     }
 }
