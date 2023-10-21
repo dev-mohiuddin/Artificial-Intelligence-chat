@@ -25,7 +25,7 @@ function Chat() {
   const [chats, setChats] = useState([
     {
       user: id,
-      message: `Hello I am Character ai. How can I help you today?`
+      message: `How can I help you today? 😍`
     },
   ])
 

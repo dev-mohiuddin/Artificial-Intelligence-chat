@@ -84,7 +84,7 @@ function Modal ({modal, setModal}){
       const data = await promptDelete(id)
       setModal({status : false})
       toastMessage(data)
-      navigate("/admin/")
+      navigate(0)
     } catch (error) {
       console.log(error)
     }

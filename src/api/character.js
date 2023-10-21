@@ -115,16 +115,27 @@ export const categoryCharacter = async (ctgId) => {
 
 export const deleteCharacter = async (charId) => {
     try {
-
-        const { data } = await axios.get(`${baseUrl}/api/v1/character/delete/${charId}`, {
+        const { data } = await axios.delete(`${baseUrl}/api/v1/character/delete/${charId}`, {
             headers: {
                 'Authorization': `${token}`
             }
         })
-        console.log(data)
-        // return data
+        return data
     } catch (error) {
 
+        return error.response.data
+    }
+}
+
+export const searchCharacter = async (userName) => {
+    try {
+        const { data } = await axios.get(`${baseUrl}/api/v1/character/search/${userName}`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        return data
+    } catch (error) {
         return error.response.data
     }
 }

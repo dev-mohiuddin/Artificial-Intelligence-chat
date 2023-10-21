@@ -1,13 +1,24 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BiMessageRounded } from 'react-icons/bi'
 import { AiOutlineEdit} from 'react-icons/ai'
 import {BsTrash3} from 'react-icons/bs'
-
+import { toastMessage } from '../../toast/toastMessage'
 import { baseUrl } from '../../api/lib/helper'
 import { deleteCharacter } from '../../api/character'
 
 function MyCharacterEl({ charData }) {
+
+    const navigate = useNavigate();
+    const charDelete = async(id)=>{
+        try {
+            const data = await deleteCharacter(id)
+            toastMessage(data)
+            navigate(0)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className='flex justify-between items-center dark:border-gray-800  border p-2'>
@@ -27,7 +38,7 @@ function MyCharacterEl({ charData }) {
             </Link>
             <div className='flex gap-2 items-center'>
                 <span className='text-lg cursor-pointer  pcol'><AiOutlineEdit /></span>
-                <span onClick={()=>deleteCharacter(charData._id)} className='text-sm cursor-pointer text-red-600'><BsTrash3 /></span>
+                <span onClick={()=> charDelete(charData._id) } className='text-sm cursor-pointer text-red-600'><BsTrash3 /></span>
             </div>
         </div>
     )

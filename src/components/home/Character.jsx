@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-
+import NoCharacter from '../utils/NoCharacter'
 import useAuth from '../../Hooks/useAuth'
 import MobileSingleCharacter from '../utils/MobileSingleCharacter'
 import SingleCharacter from '../utils/SingleCharacter'
@@ -48,16 +48,16 @@ function Character() {
             </div>
             <div className='md:hidden flex flex-col gap-2 pt-2'>
                 {
-                    characters && characters?.map((persion, val) => (
+                    characters ? characters?.map((persion, val) => (
                         <MobileSingleCharacter key={val} persion={persion} />
-                    ))
+                    )):<div className='py-3'><NoCharacter /></div>
                 }
             </div>
             <div className='hidden md:flex justify-start items-center p-4 gap-5 overflow-x-auto overflow-y-hidden scroll-hide'>
                 {
-                    characters && characters?.map((persion, val) => (
+                    characters ? characters?.map((persion, val) => (
                         <SingleCharacter persion={persion} key={val} />
-                    ))
+                    )): <div className='py-6'><NoCharacter /></div>
                 }
             </div>
         </div>

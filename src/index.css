@@ -37,7 +37,9 @@
   
 }
 
-
+input[type="file"] {
+  
+}
 
 
 @layer components {

@@ -13,6 +13,7 @@ import { myCharacters } from '../api/character'
 import { userProfile, getSingleUser } from '../api/user'
 import useAuth from '../Hooks/useAuth'
 import { toastMessage } from '../toast/toastMessage'
+import userava from '../assets/images/characterimg/userava.png'
 
 function Account() {
 
@@ -61,9 +62,9 @@ function Account() {
     const res = await userProfile(data);
     toastMessage(res)
     setFile("")
-    navigate("/")
+    navigate(0)
   }
-
+  console.log(userData.image)
   return (
     <div className='w-full main-bg h-full overflow-y-auto scroll'>
       <div className='glass h-screen py-4 w-full flex justify-between overflow-y-auto scroll'>
@@ -75,7 +76,7 @@ function Account() {
             <div className='w-full flex justify-between items-start'>
               <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
               <div className='relative w-28 h-28 rounded-full border-4 border-gray-400 dark:border-gray-600'>
-                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={baseUrl + '' + userData?.image} alt="user" />
+                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ userData.image ? baseUrl + '' + userData?.image : userava } alt="user" />
                 <span className='absolute flex justify-center items-center  bottom-0 -right-3'>
                   {
                     file ?
@@ -95,7 +96,7 @@ function Account() {
             <div className='flex justify-evenly items-center py-5 border border-b-gray-400 dark:border-b-gray-600  border-x-0 border-t-0'>
               <h2 className='hcol text-base font-medium'>Following 0</h2>
               <h2 className='hcol text-base font-medium'>Followers 0</h2>
-              <h2 className='hcol text-base font-medium'>Your Bot {characters?.length}</h2>
+              <h2 className='hcol text-base font-medium'>Your Bot {characters?.length ? characters.length : "0"}</h2>
             </div>
 
 

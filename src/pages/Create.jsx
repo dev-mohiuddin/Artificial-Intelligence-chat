@@ -33,15 +33,15 @@ function Create() {
         setCtg(ctgData)
         setInput({
           ...input,
-          user_id : user.id,
-          prompt_id : firstCtg,
+          user_id: user.id,
+          prompt_id: firstCtg,
         })
       } catch (error) {
-        
+
       }
     }
     allCgt()
-  },[user.id])
+  }, [user.id])
 
   const inputHandel = (e) => {
     setInput({
@@ -51,7 +51,7 @@ function Create() {
   }
 
   const fileHandel = (e) => {
-    
+
     if (!e.target.files) {
       return;
     }
@@ -67,7 +67,7 @@ function Create() {
 
       const res = await createCharacter(data)
       toastMessage(res)
-      navigate("/")
+      navigate(0)
     } catch (error) {
       console.log(error)
     }
@@ -113,7 +113,7 @@ function Create() {
             <h1 className='hcol text-base'>Character name</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Name your character according to the category.</label>
-              <input onChange={inputHandel}  name="name" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
+              <input onChange={inputHandel} name="name" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
             </div>
           </div>
 
@@ -121,7 +121,7 @@ function Create() {
             <h1 className='hcol text-base'>Character username</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Enter a unique username.</label>
-              <input onChange={inputHandel}  name="username" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
+              <input onChange={inputHandel} name="username" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
             </div>
           </div>
 
@@ -140,7 +140,9 @@ function Create() {
             <h1 className='hcol text-base'>Avatar</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Upload an image. jpg, png and jpeg only</label>
-              <input type="file" onChange={fileHandel} name="file" className='placeholder:bg-red-600 bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md pcol' required />
+              <span className='relative h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md w-full flex items-center'>
+                <input type="file" onChange={fileHandel} name="file" className='placeholder:bg-red-600 z-10 bg-transparent h-8 mr-4 focus:outline-none  w-full rounded-md pcol' required />
+              </span>
             </div>
           </div>
           <div className='space-y-2 mb-5'>

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 
 
@@ -22,6 +22,7 @@ import Settings from './pages/Settings'
 import Community from './pages/Community'
 import Chat from './pages/Chat'
 import Plan from './pages/Plan'
+import SearchCharacter from './pages/SearchCharacter'
 
 // admin pages
 import IsAdLogin from './pages/admin/IsAdLogin'
@@ -33,10 +34,15 @@ import CreatePrompt from './pages/admin/CreatePrompt'
 
 function App() {
 
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState("dark")
+
+  useEffect(()=>{
+    const themes = localStorage.getItem("themes")
+    setDark(themes)
+  },[])
 
   return (
-    <div className={`${dark ? 'dark' : ''}`}>
+    <div className={dark}>
       {/* toast */}
         <Toaster
           position="top-center"
@@ -59,6 +65,7 @@ function App() {
             <Route path='/create' element={<Create />} />
             <Route path='/settings' element={<Settings />} />
             <Route path='/category/:id' element={<PromptCategory />} />
+            <Route path='/search/:username' element={<SearchCharacter />} />
             <Route path='/community' element={<Community />} />
             <Route path='/plan' element={<Plan />} />
           </Route>
