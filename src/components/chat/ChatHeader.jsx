@@ -3,6 +3,7 @@ import { PiShareFatLight, PiDotsThreeVerticalBold } from 'react-icons/pi'
 import { BiMessageRounded } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { baseUrl } from '../../api/lib/helper'
+import { comming } from '../../api/lib/helper'
 
 function ChatHeader({ singleBot }) {
 
@@ -25,8 +26,8 @@ function ChatHeader({ singleBot }) {
           </div>
         </div>
         <div className='flex items-center gap-2'>
-          <span className='hcol text-xl md:text-2xl cursor-pointer'><PiShareFatLight /></span>
-          <span className='hcol cursor-pointer text-xl md:text-2xl'><PiDotsThreeVerticalBold /></span>
+          <span onClick={()=>comming() } className='hcol text-xl md:text-2xl cursor-pointer'><PiShareFatLight /></span>
+          <span onClick={()=>comming() } className='hcol cursor-pointer text-xl md:text-2xl'><PiDotsThreeVerticalBold /></span>
         </div>
       </div>
     </div>

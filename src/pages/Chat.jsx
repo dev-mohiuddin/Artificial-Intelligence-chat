@@ -1,11 +1,12 @@
 
 import { useParams } from 'react-router-dom'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { AiOutlineSend } from 'react-icons/ai'
 
 import ChatHeader from '../components/chat/ChatHeader'
 import ChatContainer from '../components/chat/ChatContainer'
 import useAuth from '../Hooks/useAuth'
+import { baseUrl } from '../api/lib/helper'
 import { singleCharacter, characterReplay } from '../api/character'
 
 
@@ -17,9 +18,9 @@ function Chat() {
   const [infalse, setInFalse] = useState(false)
   const [singleBot, setSingleBot] = useState([]);
   const [inputData, setInputData] = useState({
-    user_id : user.id,
-    character_id : id,
-    userInput : "",
+    user_id: user.id,
+    character_id: id,
+    userInput: "",
   })
 
   const [chats, setChats] = useState([
@@ -51,24 +52,24 @@ function Chat() {
     }
   }, [])
 
-  const inputHandel = (e)=>{
+  const inputHandel = (e) => {
     setInputData({
       ...inputData,
-      [e.target.name] : e.target.value,
+      [e.target.name]: e.target.value,
     })
   }
 
-  const onSubmitHandel = async (e)=>{
+  const onSubmitHandel = async (e) => {
     e.preventDefault()
     try {
       setInFalse(true)
-      setChats([...chats, {user: user.id, message : inputData.userInput}])
-      setInputData({...inputData, userInput : ""})
+      setChats([...chats, { user: user.id, message: inputData.userInput }])
+      setInputData({ ...inputData, userInput: "" })
       const data = await characterReplay(inputData)
       console.log(data.reply)
       setChats([...chats,
-        {user : user.id , message : inputData.userInput},
-        {user: id, message : data.reply}
+      { user: user.id, message: inputData.userInput },
+      { user: id, message: data.reply }
       ])
       setInFalse(false)
 
@@ -82,14 +83,26 @@ function Chat() {
       <div className='glass h-screen '>
         <div className='container px-0 relative max-w-3xl h-screen flex flex-col justify-between'>
           <ChatHeader singleBot={singleBot} />
-          <ChatContainer messageEl={messageEl} chats={chats} user={user} singleBot={singleBot} />
+          <ChatContainer infalse={infalse} messageEl={messageEl} chats={chats} user={user} singleBot={singleBot} />
 
           <div className='fixed bottom-0 w-full flex'>
             <div className='w-[768px] dark:bg-slate-900 bg-slate-100 px-3 border border-x-0 border-b-0 border-t-gray-400 dark:border-t-gray-600'>
-              <form onSubmit={onSubmitHandel} >
+              <form onSubmit={onSubmitHandel} className='relative' >
+
+                {/* typing */}
+                {
+                  infalse && <div className='absolute px-2 md:px-3 -top-12 flex items-center gap-2'>
+                    <div className="flex justify-center items-center w-7 h-7 md:w-9 md:h-9 rounded-full overflow-hidden">
+                      <img className="w-full h-full object-cover" src={baseUrl + '' + singleBot?.image} alt="" />
+                    </div>
+                    <p className='text-base pcol bg-[#ffffff94] rounded-b-2xl rounded-r-2xl dark:bg-gray-900 mt-1 p-2 px-3'>Thinking...</p>
+                  </div>
+                }
+
+
                 <div className='relative flex justify-center items-center h-14 md:h-16'>
                   <input onChange={inputHandel} value={inputData.userInput} name='userInput' className=' md:mx-4 outline-none rounded-full w-full border border-blue-500 bg-transparent h-9 px-4 pcol' placeholder='Type your message' type="text" required />
-                  <input className='absolute md:mx-4 right-0 opacity-0 p-1 rounded-2xl cursor-pointer z-10' type="submit"  disabled={infalse} value="Click" />
+                  <input className='absolute md:mx-4 right-0 opacity-0 p-1 rounded-2xl cursor-pointer z-10' type="submit" disabled={infalse} value="Click" />
                   <span className='absolute md:mx-4 right-1 text-xl text-blue-500 cursor-pointer p-1'><AiOutlineSend /></span>
                 </div>
               </form>

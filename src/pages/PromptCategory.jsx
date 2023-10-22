@@ -35,7 +35,7 @@ function PromptCategory() {
                         )) : <div className='py-3'><NoCharacter /></div>
                     }
                 </div>
-                <div className='hidden md:flex justify-start items-center p-4 gap-5 overflow-x-auto overflow-y-hidden scroll-hide'>
+                <div className='hidden md:flex justify-start items-center p-4 gap-5 overflow-x-auto overflow-y-hidden scroll'>
                     {
                         characters ? characters?.map((persion, val) => (
                             <SingleCharacter persion={persion} key={val} />

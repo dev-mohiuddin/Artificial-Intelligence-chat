@@ -67,7 +67,7 @@ function Create() {
 
       const res = await createCharacter(data)
       toastMessage(res)
-      navigate(0)
+      navigate("/")
     } catch (error) {
       console.log(error)
     }

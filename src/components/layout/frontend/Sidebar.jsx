@@ -4,6 +4,7 @@ import { AiOutlineHome, AiOutlineUser,AiOutlineLogout } from 'react-icons/ai'
 import { BiPlus } from 'react-icons/bi'
 import { PiUsersThreeThin } from 'react-icons/pi'
 import { Link } from 'react-router-dom'
+import { comming } from '../../../api/lib/helper'
 
 function Sidebar() {
 
@@ -29,7 +30,7 @@ function Sidebar() {
             <span className='group-hover:text-blue-600 duration-300 text-sm hcol'>Create</span>
           </div>
         </Link>
-        <Link to='/'>
+        <Link onClick={()=>comming() } to='/'>
           <div className='flex flex-col items-center hover:cursor-pointer group'>
             <span className='text-[28px] group-hover:text-blue-600 duration-300 hcol'>< PiUsersThreeThin /></span>
             <span className='group-hover:text-blue-600 duration-300 text-sm hcol'>Community</span>

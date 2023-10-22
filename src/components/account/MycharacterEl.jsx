@@ -6,6 +6,7 @@ import {BsTrash3} from 'react-icons/bs'
 import { toastMessage } from '../../toast/toastMessage'
 import { baseUrl } from '../../api/lib/helper'
 import { deleteCharacter } from '../../api/character'
+import { comming } from '../../api/lib/helper'
 
 function MyCharacterEl({ charData }) {
 
@@ -37,7 +38,7 @@ function MyCharacterEl({ charData }) {
                 </div>
             </Link>
             <div className='flex gap-2 items-center'>
-                <span className='text-lg cursor-pointer  pcol'><AiOutlineEdit /></span>
+                <span onClick={()=>comming() } className='text-lg cursor-pointer  pcol'><AiOutlineEdit /></span>
                 <span onClick={()=> charDelete(charData._id) } className='text-sm cursor-pointer text-red-600'><BsTrash3 /></span>
             </div>
         </div>

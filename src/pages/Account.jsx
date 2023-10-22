@@ -14,6 +14,7 @@ import { userProfile, getSingleUser } from '../api/user'
 import useAuth from '../Hooks/useAuth'
 import { toastMessage } from '../toast/toastMessage'
 import userava from '../assets/images/characterimg/userava.png'
+import { comming } from '../api/lib/helper'
 
 function Account() {
 
@@ -62,9 +63,9 @@ function Account() {
     const res = await userProfile(data);
     toastMessage(res)
     setFile("")
-    navigate(0)
+    navigate("/")
   }
-  console.log(userData.image)
+
   return (
     <div className='w-full main-bg h-full overflow-y-auto scroll'>
       <div className='glass h-screen py-4 w-full flex justify-between overflow-y-auto scroll'>
@@ -76,7 +77,7 @@ function Account() {
             <div className='w-full flex justify-between items-start'>
               <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
               <div className='relative w-28 h-28 rounded-full border-4 border-gray-400 dark:border-gray-600'>
-                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ userData.image ? baseUrl + '' + userData?.image : userava } alt="user" />
+                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ userData.image == "0" ? userava : baseUrl + userData.image } alt="user" />
                 <span className='absolute flex justify-center items-center  bottom-0 -right-3'>
                   {
                     file ?
@@ -88,7 +89,7 @@ function Account() {
                   <span onClick={upload} className={`${file ? "block" : "hidden"} absolute -right-4 cursor-pointer text-green-500 `} ><MdDone size={20} /> </span>
                 </span>
               </div>
-              <span className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><BsThreeDotsVertical /></span>
+              <span onClick={()=>comming() } className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><BsThreeDotsVertical /></span>
             </div>
             <div className='flex justify-center items-center mt-2'>
               <h2 className='hcol text-lg font-semibold'>{user?.name}</h2>
@@ -101,7 +102,7 @@ function Account() {
 
 
             <div className='flex gap-4 flex-col justify-center items-start py-5 list-none border border-b-gray-400 dark:border-b-gray-600  border-x-0 border-t-0'>
-              <li className='flex justify-center items-center text-base pcol gap-2 cursor-pointer hover:text-blue-500'>
+              <li onClick={()=>comming() } className='flex justify-center items-center text-base pcol gap-2 cursor-pointer hover:text-blue-500'>
                 <span><MdOutlineSubscriptions /></span>
                 Subscription
               </li>
@@ -111,11 +112,11 @@ function Account() {
                   Plan
                 </li>
               </Link>
-              <li className='flex justify-center items-center text-base pcol gap-2 cursor-pointer hover:text-blue-500'>
+              <li onClick={()=>comming() } className='flex justify-center items-center text-base pcol gap-2 cursor-pointer hover:text-blue-500'>
                 <span><BsLightbulb /></span>
                 Themes
               </li>
-              <li className='flex justify-center items-center text-base pcol gap-2 cursor-pointer hover:text-blue-500'>
+              <li onClick={()=>comming() } className='flex justify-center items-center text-base pcol gap-2 cursor-pointer hover:text-blue-500'>
                 <span><MdOutlinePrivacyTip /></span>
                 Privacy
               </li>

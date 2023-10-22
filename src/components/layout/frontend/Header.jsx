@@ -84,7 +84,7 @@ function Header({ dark, setDark }) {
             }
             <div className="flex gap-5 items-center">
               <Link title={user.name} className='overflow-hidden h-8 w-8 rounded-full' to="/account">
-                <img className='object-cover h-full w-full hover:scale-105 duration-300' src={ userData.image == undefined ? baseUrl + '' + userData?.image : userava } alt="avater" />
+                <img className='object-cover h-full w-full hover:scale-105 duration-300' src={ userData.image == "0" ? userava : baseUrl + userData.image } alt="avater" />
               </Link>
             </div>
           </div>

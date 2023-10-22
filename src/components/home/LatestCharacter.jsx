@@ -32,7 +32,7 @@ function LatestCharacter() {
                     )) : <p className="pcol mt-5 text-center">Latest character not avilable</p>
                 }
             </div>
-            <div className='hidden md:flex justify-start items-center p-4 gap-5 overflow-x-auto overflow-y-hidden scroll-hide'>
+            <div className='hidden md:flex justify-start items-center p-4 gap-5 overflow-x-auto overflow-y-hidden scroll mb-3'>
                 {
                     characters ? characters?.map((persion, val) => (
                         <SingleCharacter persion={persion} key={val} />

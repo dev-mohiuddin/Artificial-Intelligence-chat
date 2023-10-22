@@ -6,7 +6,7 @@ import useAuth from '../../Hooks/useAuth'
 import { getSingleUser } from '../../api/user'
 import userava from '../../assets/images/characterimg/userava.png'
 
-function ChatContainer({ messageEl, singleBot, user, chats }) {
+function ChatContainer({ infalse, messageEl, singleBot, user, chats }) {
 
 
   const me = useAuth()
@@ -39,7 +39,7 @@ function ChatContainer({ messageEl, singleBot, user, chats }) {
                   </div>
                   <div className="flex flex-1 flex-col justify-center items-start">
                     <span className="text-base pcol bg-[#ffffff94] rounded-b-2xl rounded-r-2xl dark:bg-gray-900 mt-1 p-2 px-3">{
-                      chat?.message && chat.message .split("\n").map( (text, val) => {
+                      chat?.message && chat.message.split("\n").map((text, val) => {
                         return (
                           <p className='py-[3px]' key={val}  >{text}</p>
                         )
@@ -58,7 +58,7 @@ function ChatContainer({ messageEl, singleBot, user, chats }) {
                     <p className="text-base pcol bg-[#eaeeff94] rounded-b-2xl rounded-l-2xl p-2 px-3 mt-1 dark:bg-slate-800 text-right">{chat?.message}</p>
                   </div>
                   <div className="flex justify-center items-center w-7 h-7 md:w-9 md:h-9 rounded-full overflow-hidden">
-                    <img title={user.name} className="w-full h-full object-cover" src={ userData.image == undefined ? baseUrl + '' + userData?.image : userava } alt="user" />
+                    <img title={user.name} className="w-full h-full object-cover" src={ userData.image == "0" ? userava : baseUrl + userData.image } alt="user" />
                   </div>
                 </div>
               }

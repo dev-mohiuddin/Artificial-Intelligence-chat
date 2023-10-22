@@ -3,6 +3,8 @@
 
 import {FiArrowRightCircle} from 'react-icons/fi'
 import { Link } from "react-router-dom"
+import { comming } from '../../api/lib/helper'
+
 
 function Premium() {
     return (
@@ -22,7 +24,7 @@ function Premium() {
                         </span>
                     </div>
                     <div className='flex justify-center w-full items-center'>
-                        <Link className="w-full" to="/">
+                        <Link onClick={()=>comming() } className="w-full" to="/">
                             <span className="cursor-pointer block hover:bg-blue-800 duration-300 bg-blue-600 text-center rounded-md py-2 text-white font-semibold">Subscribe</span>
                         </Link>
                     </div>

@@ -22,7 +22,7 @@ function Category() {
 
     return (
         <div>
-            <div className='flex items-center py-2 gap-4 overflow-x-auto scroll-hide'>
+            <div className='flex items-center py-2 gap-4 overflow-x-auto scroll'>
                 {
                     category && category.map((item) => (
                         <Link to={`/category/${item._id}`} key={item._id} className='shrink-0' >
