@@ -5,6 +5,7 @@ import { FiEdit } from 'react-icons/fi'
 import { BsLightbulb, BsThreeDotsVertical } from 'react-icons/bs'
 import { MdOutlineArrowBackIosNew, MdOutlineSubscriptions, MdOutlinePriceChange, MdOutlinePrivacyTip, MdDone } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
+
 import Sidebar from "../components/layout/frontend/Sidebar"
 import MyCharacterEl from '../components/account/myCharacterEl'
 import NoCharacter from '../components/utils/NoCharacter'
