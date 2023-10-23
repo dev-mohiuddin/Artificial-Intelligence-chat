@@ -33,9 +33,10 @@ function Login({ setSignUpModal, setLoginModal }) {
                 navigate("/re-verify", { state: {email} })
             }
             if (data.status === true && data.role === "admin") {
-                navigate("/admin", { replace: true})
+                window.location.replace("/admin");
             } else if (data.status === true && data.role === "user") {
-                navigate("/", {replace : true})
+                // navigate("/", {replace : true})
+                window.location.replace("/");
             }
             setUser({
                 username: "",

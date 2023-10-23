@@ -28,7 +28,7 @@ function PreCharacter() {
                 <div className='grid grid-col-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                     {
 
-                        characters && characters.map((person, val) => (
+                        characters ? characters.map((person, val) => (
                             <Link key={val} to={`/chat/${person._id}`} >
                                 <div className="flex justify-between items-center  hover:bg-slate-100 duration-300 bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-900 cursor-pointer rounded">
                                     <div className='flex gap-2 h-10 items-center'>
@@ -36,7 +36,7 @@ function PreCharacter() {
                                             <img className='w-full h-full object-cover' src={baseUrl + '' + person?.image} alt="img" />
                                         </div>
                                         <div className='flex items-center'>
-                                            <p className='pcol'>{person.name}</p>
+                                            <p className='pcol'>{person?.prompt_topic}</p>
                                         </div>
                                     </div>
                                     <div className="mr-2">
@@ -44,7 +44,7 @@ function PreCharacter() {
                                     </div>
                                 </div>
                             </Link>
-                        ))
+                        )) : <p className="pcol mt-5 text-center">Latest character not avilable</p>
                     }
                 </div>
             </div>

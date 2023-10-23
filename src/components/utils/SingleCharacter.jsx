@@ -12,7 +12,7 @@ function SingleCharacter({persion}) {
                     <div className='flex flex-col gap-2'>
                         <div className='flex gap-3 flex-col items-center'>
                             <span className='w-24 h-24 overflow-hidden'><img className='w-full h-full object-cover ov rounded-3xl' src={baseUrl+''+persion?.image} alt="teacher" /></span>
-                            <h3 className='hcol text-sm uppercase text-center'>{persion?.name}</h3>
+                            <h3 className='hcol text-sm uppercase text-center'>{persion?.prompt_topic}</h3>
                         </div>
                         <p className='text-sm mb-2 pcol text-center'>Hi I am {persion?.prompt_topic}. How can I help you?</p>
                     </div>

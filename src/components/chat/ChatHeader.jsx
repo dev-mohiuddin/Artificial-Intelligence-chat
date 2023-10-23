@@ -19,7 +19,7 @@ function ChatHeader({ singleBot }) {
           </div>
           <div className='flex flex-1 flex-col justify-center'>
             <span className='flex items-center gap-1 md:gap-2'>
-              <h2 className='font-semibold text-lg hcol md:font-bold capitalize'>{singleBot?.name}</h2>
+              <h2 className='font-semibold text-lg hcol md:font-bold capitalize'>{singleBot?.prompt_topic}</h2>
               <p className='flex items-center text-xs font-medium pcol gap-1'> <BiMessageRounded size={14} />{singleBot?.total_message}</p>
             </span>
             <p className='text-sm font-normal pcol'>Created by <span className='font-medium italic'>@{singleBot?.user_id?.name}</span></p>

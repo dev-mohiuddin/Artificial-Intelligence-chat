@@ -24,13 +24,13 @@ function Category() {
         <div>
             <div className='flex items-center py-2 gap-4 overflow-x-auto scroll'>
                 {
-                    category && category.map((item) => (
+                    category ? category.map((item) => (
                         <Link to={`/category/${item._id}`} key={item._id} className='shrink-0' >
                             <div className="bg-slate-100 shadow-sm dark:bg-gray-800 px-3 py-1 rounded-md cursor-pointer capitalize">
                                 <li className="list-none text-base font-medium pcol">{item.name}</li>
                             </div>
                         </Link>
-                    ))
+                    )): <p className='pcol py-1'>Category not found</p>
                 }
             </div>
         </div>

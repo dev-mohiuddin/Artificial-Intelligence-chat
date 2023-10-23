@@ -58,7 +58,7 @@ function ChatContainer({ infalse, messageEl, singleBot, user, chats }) {
                     <p className="text-base pcol bg-[#eaeeff94] rounded-b-2xl rounded-l-2xl p-2 px-3 mt-1 dark:bg-slate-800 text-right">{chat?.message}</p>
                   </div>
                   <div className="flex justify-center items-center w-7 h-7 md:w-9 md:h-9 rounded-full overflow-hidden">
-                    <img title={user.name} className="w-full h-full object-cover" src={ userData.image == "0" ? userava : baseUrl + userData.image } alt="user" />
+                    <img title={user.name} className="w-full h-full object-cover" src={ userData?.image == "0" ? userava : baseUrl + userData.image } alt="user" />
                   </div>
                 </div>
               }

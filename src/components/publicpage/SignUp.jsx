@@ -1,8 +1,8 @@
 
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { toastMessage } from "../../toast/toastMessage"
-import { userCheck, signUpUser } from "../../api/user"
+import { signUpUser } from "../../api/user"
 
 
 function SignUp({ setLoginModal, setSignUpModal }) {
@@ -20,11 +20,9 @@ function SignUp({ setLoginModal, setSignUpModal }) {
         password: "",
         confirmPassword: "",
     }
-    const [userAlert, setUserAlert] = useState(null)
-    const [emailAlert, setEmailAlert] = useState(null)
+
     const [user, setUser] = useState(defaultVaule)
 
-    // check user
 
     const inputHandel = (e) => {
         setUser({
@@ -32,33 +30,6 @@ function SignUp({ setLoginModal, setSignUpModal }) {
             [e.target.name]: e.target.value
         })
     }
-
-    useEffect(() => {
-        if (user.username.length > 3) {
-            async function getCheck(user) {
-                const data = await userCheck(user)
-                console.log("user", data)
-                setUserAlert(data.username)
-            }
-            getCheck(user)
-        }
-        if (user.email.length > 3) {
-            async function getCheck(user) {
-                const data = await userCheck(user)
-                console.log("email", data)  
-                setEmailAlert(data.email)
-            }
-            getCheck(user)
-        }
-        if (user.username.length == 0) {
-            setUserAlert(null)
-        }
-        if (user.email.length == 0) {
-            setEmailAlert(null)
-        }
-    }, [user,])
-
-    console.log(userAlert, emailAlert)
 
     // create user
 
@@ -83,15 +54,12 @@ function SignUp({ setLoginModal, setSignUpModal }) {
                     <label className='text-base text-white' htmlFor="">Username</label>
                     <div className="flex flex-col gap-1">
                         <input onChange={inputHandel} value={user.username} className='outline-none px-2 py-1 rounded-md bg-transparent border placeholder:text-white text-white border-gray-600' type="text" placeholder='Username' name="username" required />
-                        {userAlert === 0 && <span className="text-xs text-green-600">Username is avilable.</span>}
-                        {userAlert === 1 && <span className="text-xs text-red-500">Username is already taken.</span>}
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>
                     <label className='text-base text-white' htmlFor="">Email</label>
                     <div className="flex flex-col gap-2">
                         <input onChange={inputHandel} value={user.email} className='outline-none px-2 py-1 rounded-md bg-transparent border placeholder:text-white text-white border-gray-600' type="email" placeholder='Email' name="email" required />
-                        {emailAlert === 1 && <span className="text-xs text-red-500">Email is already use.</span>}
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>

@@ -12,6 +12,9 @@ function AdminHeader() {
 
   const adminUser = useAdminAuth()
 
+  const switchPage = ()=>{
+    window.location.replace("/");
+  }
 
   return (
     <div className='w-full bg-blue-500'>
@@ -20,9 +23,7 @@ function AdminHeader() {
           <h1 className='text-xl font-bold uppercase text-gray-100 cursor-pointer'>Collaborative Dynamics</h1>
           <span className='text-lg text-gray-100 cursor-pointer'><FaBarsStaggered /></span>
           <span className='text-lg text-gray-50 cursor-pointer'><BsSearch /></span>
-          <Link to='/'>
-            <span title='switch to user' className='text-xl text-gray-50 cursor-pointer'><PiUserSwitch /></span>
-          </Link>
+          <span onClick={switchPage} title='switch to user' className='text-xl text-gray-50 cursor-pointer'><PiUserSwitch /></span>
         </div>
         <div className='flex items-center gap-3 cursor-pointer'>
           <div className='h-8 w-8 rounded-full overflow-hidden'>

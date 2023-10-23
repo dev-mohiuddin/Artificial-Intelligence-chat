@@ -17,7 +17,7 @@ function Create() {
   const [input, setInput] = useState({
     user_id: user.id,
     prompt_id: "",
-    name: "",
+    name: "Hi",
     username: "",
     prompt_topic: "",
     visibility: true,
@@ -73,6 +73,7 @@ function Create() {
     }
   }
 
+
   return (
     <div className='w-full py-2 md:py-4 h-full overflow-y-auto scroll'>
       <div className='container flex flex-col md:gap-8 gap-5'>
@@ -109,13 +110,13 @@ function Create() {
             </div>
           </div>
 
-          <div className='space-y-2'>
+          {/* <div className='space-y-2'>
             <h1 className='hcol text-base'>Character name</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Name your character according to the category.</label>
-              <input onChange={inputHandel} name="name" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
+              <input onChange={inputHandel} name="prompt_topic"  className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" id="" required />
             </div>
-          </div>
+          </div> */}
 
           <div className='space-y-2'>
             <h1 className='hcol text-base'>Character username</h1>

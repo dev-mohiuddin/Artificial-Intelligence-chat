@@ -37,9 +37,10 @@ function App() {
   const [dark, setDark] = useState("dark")
 
   useEffect(()=>{
+    // localStorage.setItem("themes", "dark")
     const themes = localStorage.getItem("themes")
     setDark(themes)
-  },[])
+  },[ ])
 
   return (
     <div className={dark}>

@@ -78,7 +78,7 @@ function Account() {
             <div className='w-full flex justify-between items-start'>
               <span onClick={() => navigate(-1)} title='Back' className='flex items-center text-xl pr-1 md:text-2xl cursor-pointer hcol'><MdOutlineArrowBackIosNew /></span>
               <div className='relative w-28 h-28 rounded-full border-4 border-gray-400 dark:border-gray-600'>
-                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ userData.image == "0" ? userava : baseUrl + userData.image } alt="user" />
+                <img className=' w-full h-full object-cover rounded-full overflow-hidden' src={ userData?.image == "0" ? userava : baseUrl + userData.image } alt="user" />
                 <span className='absolute flex justify-center items-center  bottom-0 -right-3'>
                   {
                     file ?
