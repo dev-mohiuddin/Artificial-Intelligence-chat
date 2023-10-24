@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom"
 import { useEffect } from "react";
 import { reVerify } from "../../api/user";
+import { toastMessage } from "../../toast/toastMessage";
 
 function ReVerify() {
 
@@ -12,7 +13,7 @@ function ReVerify() {
   useEffect(()=>{
     const verify = async()=>{
       const data = await reVerify({email: email});
-      console.log(data)
+      toastMessage(data)
     }
     verify()
   },[email])

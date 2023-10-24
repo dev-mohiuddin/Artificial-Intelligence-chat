@@ -39,7 +39,6 @@ function Header({ dark, setDark }) {
   }
 
   const addDark = () => {
-    console.log("hello")
     setDark('')
     localStorage.setItem("themes", "")
 

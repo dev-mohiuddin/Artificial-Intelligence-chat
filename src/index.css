@@ -28,6 +28,15 @@
   -ms-overflow-style: none; 
   scrollbar-width: none;  
 }
+.inputFile::-webkit-file-upload-button{
+  /* visibility: hidden ; */
+  height: 30px;
+  border: 0;
+  border-right: solid 1px;
+  background:  transparent;
+  color: blue;
+}
+
 .heroBg{
   background-image: url('./assets/images/characterimg/herobg.png');
   background-repeat: no-repeat;

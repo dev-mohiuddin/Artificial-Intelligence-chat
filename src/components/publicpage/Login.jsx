@@ -7,6 +7,7 @@ import { toastMessage } from "../../toast/toastMessage";
 function Login({ setSignUpModal, setLoginModal }) {
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -26,7 +27,9 @@ function Login({ setSignUpModal, setLoginModal }) {
     const login = async (e) => {
         e.preventDefault()
         try {
+            setLoading(true)
             const data = await userLogin(user)
+            setLoading(false)
             toastMessage(data)
             if( data.user_verifed == false ){
                 const email = data.user_data.email;
@@ -59,7 +62,7 @@ function Login({ setSignUpModal, setLoginModal }) {
                     <label className='text-base text-white' htmlFor="">Password</label>
                     <input onChange={inputHandel} value={user.password} className='outline-none px-2 py-1 rounded-md bg-transparent border border-gray-600  placeholder:text-white text-white ' type="password" placeholder='Password' name="password" required />
                 </div>
-                <input className='cursor-pointer px-3 py-1 bg-blue-500 rounded-md w-20 text-base font-medium text-white' type="submit" value="Login" />
+                <input className='cursor-pointer px-3 py-1 bg-blue-500 rounded-md w-20 text-base font-medium text-white' disabled={loading} type="submit" value={ loading ? "loading..." : "Log in" } />
             </form>
             <div className='flex gap-2'>
                 <p className='text-xs text-gray-200'>Forgot.</p>

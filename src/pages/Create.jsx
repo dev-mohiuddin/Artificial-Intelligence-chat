@@ -6,7 +6,7 @@ import { GiOctoman } from 'react-icons/gi'
 import { allPrompts } from '../api/prompt';
 import useAuth from '../Hooks/useAuth'
 import { toastMessage } from '../toast/toastMessage';
-import { createCharacter } from '../api/character';
+import { checkCharacterUsername, createCharacter } from '../api/character';
 
 function Create() {
 
@@ -14,6 +14,7 @@ function Create() {
   const navigate = useNavigate();
   const [ctg, setCtg] = useState([]);
   const [file, setFile] = useState("");
+  const [checkUserMsg, setCheckUserMsg] = useState('')
   const [input, setInput] = useState({
     user_id: user.id,
     prompt_id: "",
@@ -41,7 +42,15 @@ function Create() {
       }
     }
     allCgt()
-  }, [user.id])
+  }, [])
+
+  useEffect(()=>{
+    const check = async()=>{
+      const data = await checkCharacterUsername(input.username)
+      setCheckUserMsg(data)
+    }
+    check()
+  },[input.username])
 
   const inputHandel = (e) => {
     setInput({
@@ -72,8 +81,6 @@ function Create() {
       console.log(error)
     }
   }
-
-
   return (
     <div className='w-full py-2 md:py-4 h-full overflow-y-auto scroll'>
       <div className='container flex flex-col md:gap-8 gap-5'>
@@ -103,7 +110,7 @@ function Create() {
           </div>
 
           <div className='space-y-2'>
-            <h1 className='hcol text-base'>Character Topic</h1>
+            <h1 className='hcol text-base'>Character Topic/Name</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">You name the subcategory according to the category.</label>
               <input onChange={inputHandel} name="prompt_topic" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
@@ -118,12 +125,13 @@ function Create() {
             </div>
           </div> */}
 
-          <div className='space-y-2'>
+          <div className='relative space-y-2'>
             <h1 className='hcol text-base'>Character username</h1>
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Enter a unique username.</label>
               <input onChange={inputHandel} name="username" className='px-3 pcol bg-transparent h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md ' type="text" required />
             </div>
+            <p className={`${checkUserMsg?.status ? "text-green-500 " : " text-red-500 " } absolute ml-1 -bottom-4 text-xs`} >{checkUserMsg?.message}</p>
           </div>
 
           <div className='space-y-2'>
@@ -142,7 +150,7 @@ function Create() {
             <div className='flex flex-col gap-1'>
               <label className='pcol text-sm' htmlFor="">Upload an image. jpg, png and jpeg only</label>
               <span className='relative h-10 focus:outline-none border border-gray-400 dark:border-gray-600 rounded-md w-full flex items-center'>
-                <input type="file" onChange={fileHandel} name="file" className='placeholder:bg-red-600 z-10 bg-transparent h-8 mr-4 focus:outline-none  w-full rounded-md pcol' required />
+                <input type="file" onChange={fileHandel} name="file" className=' inputFile placeholder:bg-red-600 z-10 bg-transparent h-8 mr-4 focus:outline-none  w-full rounded-md pcol' required />
               </span>
             </div>
           </div>

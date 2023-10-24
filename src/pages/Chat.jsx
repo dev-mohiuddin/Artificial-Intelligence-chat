@@ -91,7 +91,7 @@ function Chat() {
 
                 {/* typing */}
                 {
-                  infalse && <div className='absolute px-2 md:px-3 -top-12 flex items-center gap-2'>
+                  infalse && <div className='absolute md:px-3 -top-12 md:-top-14 flex items-center md:gap-2'>
                     <div className="flex justify-center items-center w-7 h-7 md:w-9 md:h-9 rounded-full overflow-hidden">
                       <img className="w-full h-full object-cover" src={baseUrl + '' + singleBot?.image} alt="" />
                     </div>

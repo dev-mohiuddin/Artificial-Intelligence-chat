@@ -139,3 +139,20 @@ export const searchCharacter = async (userName) => {
         return error.response.data
     }
 }
+export const checkCharacterUsername = async (userName) => {
+    try {
+        if (userName) {
+            const { data } = await axios.get(`${baseUrl}/api/v1/character/username/check/${userName}`, {
+                headers: {
+                    'Authorization': `${token}`
+                }
+            })
+            return data
+        } else {
+
+        }
+
+    } catch (error) {
+        // console.log(error)
+    }
+}

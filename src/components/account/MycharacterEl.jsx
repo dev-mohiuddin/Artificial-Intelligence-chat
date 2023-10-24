@@ -30,7 +30,7 @@ function MyCharacterEl({ charData }) {
                     </div>
                     <div className='flex flex-col'>
                         <div className='flex gap-2 items-center'>
-                            <h3 className='text-base font-semibold hcol'>{charData.name}</h3>
+                            <h3 className='text-base font-semibold hcol'>{charData?.prompt_topic}</h3>
                             <span className='pcol mt-1 flex items-center text-xs'><BiMessageRounded size={12} />{charData.total_message}</span>
                         </div>
                         <p className='text-base pcol'>{charData.username}</p>
